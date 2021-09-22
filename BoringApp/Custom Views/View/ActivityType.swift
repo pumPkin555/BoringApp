@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ActivityTypeLabel: UILabel {
-    
+class ActivityType: UILabel, UIViewProtocol {
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureMainView()
+        configureView()
     }
     
     override func layoutSubviews() {
@@ -23,7 +23,12 @@ class ActivityTypeLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureMainView() {
+    func set(text: String) {
+        self.text = text
+        self.backgroundColor = UIColor.systemRed
+    }
+    
+    func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.textAlignment = .center
         self.sizeToFit()

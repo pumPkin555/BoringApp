@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ActivityType: String {
+enum Activity: String {
     case education
     case recreational
     case social
