@@ -33,7 +33,8 @@ class ActivityLabel: UILabel, UIViewProtocol {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
         self.numberOfLines = 0
-        self.font = UIFont(name: "Helvetica", size: 24)
+        self.font = UIFont(name: "Helvetica", size: 50)
         self.textAlignment = .left
+        self.sizeToFit()
     }
 }

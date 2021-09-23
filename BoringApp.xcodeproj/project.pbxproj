@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B8B44C026FCC93600C7E60D /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B44BF26FCC93600C7E60D /* ActivityButton.swift */; };
+		3B8B44C626FD078300C7E60D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B44C526FD078300C7E60D /* SettingsViewController.swift */; };
+		3B8B44CA26FD0B2600C7E60D /* ActivityStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B44C926FD0B2600C7E60D /* ActivityStackView.swift */; };
+		3B8B44CE26FD0CED00C7E60D /* SubStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B44CD26FD0CED00C7E60D /* SubStackView.swift */; };
+		3B921FEE26FD1879006F2F3C /* TypeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B921FED26FD1879006F2F3C /* TypeBlock.swift */; };
+		3B921FF526FD1DD4006F2F3C /* ParticipantsBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B921FF426FD1DD4006F2F3C /* ParticipantsBlock.swift */; };
+		3B921FFC26FD2359006F2F3C /* PriceBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B921FFB26FD2359006F2F3C /* PriceBlock.swift */; };
+		3B92200026FD33C8006F2F3C /* SettingsViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */; };
 		3BF3B80626FB40F2006340DD /* ActivityLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B80526FB40F2006340DD /* ActivityLabel.swift */; };
 		3BF3B80F26FB7EB3006340DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B80E26FB7EB3006340DD /* Constants.swift */; };
 		3BF3B81826FBA393006340DD /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B81726FBA393006340DD /* StackView.swift */; };
-		3BF3B82026FBBE77006340DD /* BookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B81F26FBBE77006340DD /* BookMark.swift */; };
+		3BF3B82026FBBE77006340DD /* BoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B81F26FBBE77006340DD /* BoringButton.swift */; };
 		3BF3B82726FBC2A9006340DD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B82626FBC2A9006340DD /* Protocols.swift */; };
 		3BF3B82D26FBC45B006340DD /* MyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B82C26FBC45B006340DD /* MyImageView.swift */; };
 		3BFACDF226FA54030021FBC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFACDF126FA54030021FBC3 /* AppDelegate.swift */; };
@@ -28,10 +36,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B8B44BF26FCC93600C7E60D /* ActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
+		3B8B44C526FD078300C7E60D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3B8B44C926FD0B2600C7E60D /* ActivityStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStackView.swift; sourceTree = "<group>"; };
+		3B8B44CD26FD0CED00C7E60D /* SubStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubStackView.swift; sourceTree = "<group>"; };
+		3B921FED26FD1879006F2F3C /* TypeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBlock.swift; sourceTree = "<group>"; };
+		3B921FF426FD1DD4006F2F3C /* ParticipantsBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsBlock.swift; sourceTree = "<group>"; };
+		3B921FFB26FD2359006F2F3C /* PriceBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceBlock.swift; sourceTree = "<group>"; };
+		3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewBlock.swift; sourceTree = "<group>"; };
 		3BF3B80526FB40F2006340DD /* ActivityLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLabel.swift; sourceTree = "<group>"; };
 		3BF3B80E26FB7EB3006340DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3BF3B81726FBA393006340DD /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
-		3BF3B81F26FBBE77006340DD /* BookMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMark.swift; sourceTree = "<group>"; };
+		3BF3B81F26FBBE77006340DD /* BoringButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringButton.swift; sourceTree = "<group>"; };
 		3BF3B82626FBC2A9006340DD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		3BF3B82C26FBC45B006340DD /* MyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageView.swift; sourceTree = "<group>"; };
 		3BFACDEE26FA54030021FBC3 /* BoringApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoringApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +77,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B8B44CC26FD0CCD00C7E60D /* Stack View */ = {
+			isa = PBXGroup;
+			children = (
+				3B921FFA26FD234A006F2F3C /* Price */,
+				3B921FF326FD1DC1006F2F3C /* Participants */,
+				3B921FF126FD1DBA006F2F3C /* Type */,
+				3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */,
+			);
+			path = "Stack View";
+			sourceTree = "<group>";
+		};
+		3B921FF126FD1DBA006F2F3C /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				3B8B44C926FD0B2600C7E60D /* ActivityStackView.swift */,
+				3B8B44CD26FD0CED00C7E60D /* SubStackView.swift */,
+				3B921FED26FD1879006F2F3C /* TypeBlock.swift */,
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
+		3B921FF326FD1DC1006F2F3C /* Participants */ = {
+			isa = PBXGroup;
+			children = (
+				3B921FF426FD1DD4006F2F3C /* ParticipantsBlock.swift */,
+			);
+			path = Participants;
+			sourceTree = "<group>";
+		};
+		3B921FFA26FD234A006F2F3C /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				3B921FFB26FD2359006F2F3C /* PriceBlock.swift */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
 		3BF3B82526FBC29E006340DD /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				3BFACDF526FA54030021FBC3 /* ViewController.swift */,
+				3B8B44C526FD078300C7E60D /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +212,7 @@
 		3BFACE2626FA6BD90021FBC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3B8B44CC26FD0CCD00C7E60D /* Stack View */,
 				3BFACE2026FA67020021FBC3 /* CardView.swift */,
 				3BFACE3126FA6F760021FBC3 /* ActivityType.swift */,
 				3BF3B80526FB40F2006340DD /* ActivityLabel.swift */,
@@ -170,7 +225,8 @@
 		3BFACE2726FA6BEF0021FBC3 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				3BF3B81F26FBBE77006340DD /* BookMark.swift */,
+				3BF3B81F26FBBE77006340DD /* BoringButton.swift */,
+				3B8B44BF26FCC93600C7E60D /* ActivityButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -256,16 +312,24 @@
 				3BFACE3226FA6F760021FBC3 /* ActivityType.swift in Sources */,
 				3BFACDF626FA54030021FBC3 /* ViewController.swift in Sources */,
 				3BF3B80626FB40F2006340DD /* ActivityLabel.swift in Sources */,
+				3B8B44CA26FD0B2600C7E60D /* ActivityStackView.swift in Sources */,
 				3BFACE1026FA54570021FBC3 /* BoredActivity.swift in Sources */,
+				3B8B44C626FD078300C7E60D /* SettingsViewController.swift in Sources */,
 				3BFACE2E26FA6D2F0021FBC3 /* UIView+ext.swift in Sources */,
 				3BF3B80F26FB7EB3006340DD /* Constants.swift in Sources */,
+				3B92200026FD33C8006F2F3C /* SettingsViewBlock.swift in Sources */,
 				3BFACDF226FA54030021FBC3 /* AppDelegate.swift in Sources */,
+				3B921FEE26FD1879006F2F3C /* TypeBlock.swift in Sources */,
+				3B8B44C026FCC93600C7E60D /* ActivityButton.swift in Sources */,
 				3BFACE1D26FA63990021FBC3 /* BoresEnums.swift in Sources */,
+				3B8B44CE26FD0CED00C7E60D /* SubStackView.swift in Sources */,
+				3B921FFC26FD2359006F2F3C /* PriceBlock.swift in Sources */,
 				3BF3B81826FBA393006340DD /* StackView.swift in Sources */,
 				3BFACDF426FA54030021FBC3 /* SceneDelegate.swift in Sources */,
-				3BF3B82026FBBE77006340DD /* BookMark.swift in Sources */,
+				3BF3B82026FBBE77006340DD /* BoringButton.swift in Sources */,
 				3BFACE1826FA5D440021FBC3 /* ErrorMessages.swift in Sources */,
 				3BFACE1426FA54F00021FBC3 /* BoredManager.swift in Sources */,
+				3B921FF526FD1DD4006F2F3C /* ParticipantsBlock.swift in Sources */,
 				3BF3B82D26FBC45B006340DD /* MyImageView.swift in Sources */,
 				3BF3B82726FBC2A9006340DD /* Protocols.swift in Sources */,
 			);

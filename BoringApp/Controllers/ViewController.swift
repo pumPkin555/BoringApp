@@ -11,13 +11,17 @@ class ViewController: UIViewController {
     
     var card: CardView = CardView(backgroundColor: UIColor.systemGray6)
     let refreshImageView: MyImageView = MyImageView(image: UIImage(systemName: SFSymbols.arrowClockwiseCircle.rawValue) ?? UIImage())
+    let filterButton: BoringButton = BoringButton()
     
     let boredManager: BoredManager = BoredManager()
+    
+    var isNeedToFetch: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
+        configureFilterButton()
         configureCardView()
         configureRefreshImageView()
         configurePanGestureRecognizer()
@@ -35,16 +39,17 @@ class ViewController: UIViewController {
     
     private func configureCardView() {
         view.addSubview(card)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        
-        card.addGestureRecognizer(tap)
     }
     
     private func configureRefreshImageView() {
         view.addSubview(refreshImageView)
+    }
+    
+    private func configureFilterButton() {
+        view.addSubview(filterButton)
         
-        refreshImageView.alpha = 1
+        filterButton.set(image: UIImage(systemName: SFSymbols.filer.rawValue) ?? UIImage())
+        filterButton.addTarget(self, action: #selector(presentSettingsViewController), for: .touchUpInside)
     }
     
     private func configurePanGestureRecognizer() {
@@ -66,6 +71,13 @@ class ViewController: UIViewController {
             refreshImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1),
             refreshImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
+        
+        NSLayoutConstraint.activate([
+            filterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            filterButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+            filterButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+            filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)
+        ])
     }
     
     private func fetchData() {
@@ -81,27 +93,46 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc private func tapped() {
-        fetchData()
-    }
-    
     @objc private func increaseObject(recognizer: UIPanGestureRecognizer) {
         
-//        var startPoint: CGFloat?
-//        var endPoint: CGFloat?
+        let translation = recognizer.translation(in: self.view)
         
         if (recognizer.state == .began) {
-            let translation = recognizer.translation(in: self.view)
-            print("Gesture began, \(translation.y)")
         } else if (recognizer.state == .changed) {
-            print("Changed!")
-//            let translation = recognizer.translation(in: self.view)
+            
+            if (translation.y + self.card.frame.maxY > self.card.frame.maxY) {
+
+            } else if (self.card.frame.minY > self.view.frame.minY + 25) {
+                increase(with: abs(translation.y))
+                let newY = translation.y
+                self.card.transform = CGAffineTransform(translationX: 0, y: newY)
+                self.isNeedToFetch = true
+            }
         } else if (recognizer.state == .ended) {
-            let translation = recognizer.translation(in: self.view)
-            print("Ended, \(translation.y)")
+            UIView.animate(withDuration: 0.2, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: []) {
+                self.card.transform = .identity
+                self.refreshImageView.transform = .identity
+            }
+            
+            if (self.isNeedToFetch) {
+                self.fetchData()
+                self.isNeedToFetch = false
+            }
         }
+    }
+    
+    private func increase(with translationValue: CGFloat) {
+        let coeff: CGFloat = 0.03
+        let scale = abs(translationValue) * coeff
         
-//        print("Diff: \(endPoint!) - \(startPoint!) = \(endPoint! - startPoint!)")
+        if (scale > 1 && self.refreshImageView.frame.width * scale <= 80) {
+            self.refreshImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+            print("width:", self.refreshImageView.frame.width)
+        }
+    }
+    
+    @objc private func presentSettingsViewController() {
+        let settingsVC = SettingsViewController()
+        self.present(settingsVC, animated: true, completion: nil)
     }
 }
-

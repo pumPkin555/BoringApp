@@ -14,4 +14,5 @@ enum SFSymbols: String {
     case bookmark = "bookmark"
     case bookmarkFill = "bookmark.fill"
     case arrowClockwiseCircle = "arrow.clockwise.circle"
+    case filer = "slider.horizontal.3"
 }

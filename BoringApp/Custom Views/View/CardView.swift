@@ -13,7 +13,7 @@ class CardView: UIView {
     let activityType: ActivityType = ActivityType()
     let participantView: StackView = StackView()
     let priceView: StackView = StackView()
-    let bookMark: BookMark = BookMark()
+    let bookMark: BoringButton = BoringButton()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -95,7 +95,7 @@ class CardView: UIView {
         NSLayoutConstraint.activate([
             activityType.topAnchor.constraint(equalTo: self.topAnchor),
             activityType.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            activityType.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
+            activityType.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.32),
             activityType.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.07)
         ])
         

@@ -7,11 +7,10 @@
 
 import UIKit
 
-class BookMark: UIButton {
+class BoringButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.set(image: UIImage(systemName: SFSymbols.bookmark.rawValue) ?? UIImage())
         configureBookMark()
     }
     

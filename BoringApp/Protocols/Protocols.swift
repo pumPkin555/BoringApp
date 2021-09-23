@@ -12,3 +12,8 @@ import Foundation
     func configureView()
     @objc optional func setUpConstraints()
 }
+
+protocol UIViewControllerProtocol {
+    func configureViewController()
+    func setUpConstraints()
+}
