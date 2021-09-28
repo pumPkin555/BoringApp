@@ -18,10 +18,10 @@ protocol UIViewControllerProtocol {
     func setUpConstraints()
 }
 
-protocol ActivityTypeProtocol {
-    func set(type: Types)
+protocol BoringButtonDelegate {
+    func set(link: String)
 }
 
-protocol ParticipantsProtocol {
-    func set(quantity: Int)
+protocol SettingsDelegate {
+    func set(model: HalfBoredActivity)
 }

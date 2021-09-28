@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SafariServices
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSafariViewControllerDelegate {
     
     let tableView: UITableView = UITableView()
     var savedData: [SavedBoredActivity] = []
@@ -15,7 +16,7 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureFavoritesViewController()
+        configureViewController()
         configureTableView()
     }
     
@@ -30,8 +31,13 @@ class FavoritesViewController: UIViewController {
         setUpConstraints()
     }
     
-    func configureFavoritesViewController() {
-        view.backgroundColor = UIColor.systemBackground
+    func configureViewController() {
+        view.backgroundColor = UIColor(named: "Orange_Coral_1")!
+        navigationController?.navigationBar.prefersLargeTitles = false
+        title = "Favorites"
+        
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = backButton
     }
     
     func configureTableView() {
@@ -39,14 +45,29 @@ class FavoritesViewController: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.clear
-//        tableView.frame = self.view.bounds
+        tableView.separatorColor = UIColor.clear
         
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(BoringCell.self, forCellReuseIdentifier: BoringCell.reuseID)
     }
+    
+    private func openSafariWithLink(with link: String) {
+        if let url = URL(string: link) {
+            let safariVC = SFSafariViewController(url: url)
+            safariVC.delegate = self
+            
+            present(safariVC, animated: true, completion: nil)
+        }
+    }
+    
+    @objc private func dismissVC() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
+
+//MARK: - Constraints
 
 extension FavoritesViewController {
     func setUpConstraints() {
@@ -76,10 +97,22 @@ extension FavoritesViewController: UITableViewDataSource {
 
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.height / 2
+        return self.view.frame.height * 0.7
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if (savedData[indexPath.row].link != "") {
+            openSafariWithLink(with: savedData[indexPath.row].link!)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            DataBaseManager.shared.deleteFromEntity(with: savedData[indexPath.row])
+            savedData.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
     }
 }

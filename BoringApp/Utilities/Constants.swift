@@ -17,6 +17,8 @@ enum SFSymbols: String {
     case filer = "slider.horizontal.3"
     case dollar = "dollarsign.circle"
     case link = "link.circle.fill"
+    case error = "xmark.circle"
+    case star = "star"
 }
 
 enum Types: String {

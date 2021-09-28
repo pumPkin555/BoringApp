@@ -13,9 +13,11 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     let settingsBlock: SettingsViewBlock = SettingsViewBlock()
     let doneButton: UIButton = UIButton()
     
-    var type: Types?
-    var participants: Int?
-    var price: [Double] = []
+    var delegate: SettingsDelegate?
+    
+    var type: Types? = nil
+    var participants: Int? = nil
+    var price: Double? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +45,10 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     
     func configureHand() {
         view.addSubview(hand)
+        
         hand.translatesAutoresizingMaskIntoConstraints = false
         hand.backgroundColor = UIColor.systemGray3
-        hand.layer.cornerRadius = 5
+        hand.layer.cornerRadius = 3
     }
     
     func configureDoneButton() {
@@ -58,14 +61,6 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
         doneButton.layer.masksToBounds = true
 
         doneButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
-        
-//        let gradient: CAGradientLayer = CAGradientLayer()
-//        gradient.colors = [UIColor.systemOrange.cgColor, UIColor.systemRed.cgColor]
-//        gradient.startPoint = CGPoint(x: 0, y: 0)
-//        gradient.endPoint = CGPoint(x: 1, y: 1)
-//        gradient.locations = [0.0, 0.7]
-//        gradient.frame = doneButton.bounds
-//        doneButton.layer.insertSublayer(gradient, at: 0)
     }
     
     @objc private func getType(notification: Notification) {
@@ -77,15 +72,21 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     }
     
     @objc func dismissController() {
-        let halfBoredActivity = HalfBoredActivity(type: self.type ?? Types.charity, participants: self.participants ?? 1, price: 0)
-        NotificationCenter.default.post(name: .halfBoredParticipants, object: halfBoredActivity)
+        let model = HalfBoredActivity(type: self.type, participants: self.participants, price: self.price)
+        delegate?.set(model: model)
+        LonelyManager.shared.deleteAll()
+        
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+//MARK: - Constraints
+
+extension SettingsViewController {
     
     func setUpConstraints() {
-        
         NSLayoutConstraint.activate([
-            hand.heightAnchor.constraint(equalToConstant: 7),
+            hand.heightAnchor.constraint(equalToConstant: 6),
             hand.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
             hand.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
             hand.centerXAnchor.constraint(equalTo: view.centerXAnchor)
@@ -94,7 +95,7 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
         NSLayoutConstraint.activate([
             settingsBlock.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             settingsBlock.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            settingsBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.45),
+            settingsBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             settingsBlock.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95)
         ])
         

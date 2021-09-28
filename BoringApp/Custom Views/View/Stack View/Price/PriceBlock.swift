@@ -38,7 +38,7 @@ class PriceBlock: UIView, UIViewProtocol {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "PRICE"
         label.textAlignment = .left
-        label.textColor = UIColor.white
+        label.textColor = UIColor.secondaryLabel
     }
     
     private func configureSwitcher() {

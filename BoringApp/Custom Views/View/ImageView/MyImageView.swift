@@ -33,9 +33,7 @@ class MyImageView: UIImageView, UIViewProtocol {
     
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-//        self.image = UIImage(systemName: SFSymbols.arrowClockwiseCircle.rawValue) ?? UIImage()
         self.backgroundColor = UIColor.clear
-        self.tintColor = UIColor.white
+        self.tintColor = UIColor.label
     }
 }

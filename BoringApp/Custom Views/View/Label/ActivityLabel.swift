@@ -32,8 +32,9 @@ class ActivityLabel: UILabel, UIViewProtocol {
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
+        self.textColor = .label
         self.numberOfLines = 0
-        self.font = UIFont(name: "Helvetica", size: 50)
+        self.font = UIFont(name: "Helvetica", size: 40)
         self.textAlignment = .left
         self.sizeToFit()
     }

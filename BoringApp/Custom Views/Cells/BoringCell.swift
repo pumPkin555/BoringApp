@@ -28,10 +28,9 @@ class BoringCell: UITableViewCell, UIViewProtocol {
     }
     
     func configureView() {
+        self.backgroundColor = UIColor.clear
+        self.contentView.backgroundColor = UIColor.clear
         self.contentView.addSubview(self.card)
-        
-        card.translatesAutoresizingMaskIntoConstraints = false
-        card.backgroundColor = UIColor.systemGray6
     }
     
     func set(with model: SavedBoredActivity) {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CDAlertView
 
 extension UIViewController {
     func presentAlert(title: String, message: String) {
@@ -16,6 +17,16 @@ extension UIViewController {
             alertController.addAction(cancelButton)
             
             self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func presentCustomAlert(title: String, message: String) {
+        DispatchQueue.main.async {
+            let alertController = CDAlertView(title: title, message: message, type: .custom(image: UIImage(systemName: SFSymbols.error.rawValue) ?? UIImage()))
+            let okButton = CDAlertViewAction(title: "Ok! 😒")
+            
+            alertController.add(action: okButton)
+            alertController.show()
         }
     }
 }

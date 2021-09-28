@@ -40,9 +40,9 @@ class SubStackView: UIStackView, UIViewProtocol {
         self.spacing = 10
     }
     
-    func set(numberOfButtons: Int, with titles: [String], with colors1: [UIColor], colors2: [UIColor]) {
+    func set(numberOfButtons: Int, with titles: [String], with colors: [UIColor]) {
         for i in 0..<numberOfButtons {
-            let button = ActivityButton(title: titles[i], color1: colors1[i].cgColor, color2: colors2[i].cgColor)
+            let button = ActivityButton(title: titles[i], color: colors[i])
             self.addArrangedSubview(button)
         }
         

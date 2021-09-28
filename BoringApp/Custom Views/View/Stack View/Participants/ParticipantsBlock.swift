@@ -43,7 +43,7 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
     
     private func configureLabel() {
         label.text = "PARTICIPANTS"
-        label.textColor = UIColor.white
+        label.textColor = UIColor.secondaryLabel
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -51,7 +51,8 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
     private func configureTextField() {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = UIColor.clear
-        textField.textColor = UIColor.white
+        textField.textAlignment = .center
+        textField.textColor = UIColor.label
         textField.font = UIFont(name: "Helvetica", size: 14)
         textField.placeholder = "Type the number of participants in your activity"
         textField.keyboardType = .numberPad

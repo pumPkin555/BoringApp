@@ -23,13 +23,13 @@ class DataBaseManager {
         
         var resultArray: [SavedBoredActivity] = []
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContanier.viewContext
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContanier.viewContext
         
         let fetchRequest: NSFetchRequest<SavedBoredActivity> = SavedBoredActivity.fetchRequest()
         
         do {
-            resultArray = try context.fetch(fetchRequest)
+            resultArray = try managedContext?.fetch(fetchRequest) as! [SavedBoredActivity]
         } catch {
             resultArray = []
             print(error.localizedDescription)
@@ -40,7 +40,6 @@ class DataBaseManager {
     
     func saveActivity(with model: BoredActivity) {
         
-        //        let context = appDelegate.persistentContanier.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "SavedBoredActivity", in: managedContext!)
         let taskObject = NSManagedObject(entity: entity!, insertInto: managedContext) as! SavedBoredActivity
         

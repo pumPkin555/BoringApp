@@ -52,7 +52,7 @@ class BoredManager {
                 let activity = try decoder.decode(BoredActivity.self, from: data)
                 completion(.success(activity))
             } catch {
-                completion(.failure(error as! BAError))
+                completion(.failure(.invalidData))
             }
         }
         dataTask.resume()

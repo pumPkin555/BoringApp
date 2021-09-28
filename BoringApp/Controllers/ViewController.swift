@@ -7,12 +7,14 @@
 
 import UIKit
 import CoreData
+import SafariServices
 
-class ViewController: UIViewController {
-    
-    var card: CardView = CardView(backgroundColor: UIColor.systemGray6)
+class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewControllerDelegate {
+
+    var card: CardView = CardView()
     let refreshImageView: MyImageView = MyImageView(image: UIImage(systemName: SFSymbols.arrowClockwiseCircle.rawValue) ?? UIImage())
     let filterButton: BoringButton = BoringButton()
+    let favoritesButton: BoringButton = BoringButton()
     
     let boredManager: BoredManager = BoredManager()
     var boredModel: BoredActivity?
@@ -23,28 +25,15 @@ class ViewController: UIViewController {
     var tempType: Types? = nil
     var tempParticipants: Int? = nil
     
-    var gradientLayer: CAGradientLayer! {
-        didSet {
-            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-            gradientLayer.locations = [0.0, 0.4, 0.8]
-            gradientLayer.colors = [UIColor(named: "MoonLight Asteroid_1")!.cgColor, UIColor(named: "MoonLight Asteroid_2")!.cgColor, UIColor(named: "MoonLight Asteroid_3")!.cgColor]
-        }
-    }
-    var animation: CABasicAnimation! {
-        didSet {
-            animation.fromValue = [0.0, 0.4, 0.8]
-            animation.toValue = [0.3, 0.7, 1.5]
-            animation.autoreverses = true
-            animation.duration = 3
-            animation.repeatCount = .infinity
-        }
-    }
+    let gradientLayer: CAGradientLayer = CAGradientLayer()
+    let animation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView()
+        configureViewController()
+        configureGradient()
+        configureFavoritesButton()
         configureFilterButton()
         configureCardView()
         configureRefreshImageView()
@@ -52,8 +41,7 @@ class ViewController: UIViewController {
         
         fetchData(type: self.tempType, participants: self.tempParticipants, price: self.tempPrice)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getDataFromSettingsVC(notification:)), name: .halfBoredParticipants, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(openSafariWithLink(notification:)), name: .link, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(getDataFromSettingsVC(notification:)), name: .halfBoredParticipants, object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -61,27 +49,49 @@ class ViewController: UIViewController {
         setUpConstraints()
     }
     
-    private func configureView() {
-        view.backgroundColor = UIColor.systemBackground
-        gradientLayer = CAGradientLayer()
+    //MARK: - Configure User Interface
+    
+    func configureViewController() {
+        view.backgroundColor = UIColor.clear
+    }
+    
+    private func configureGradient() {
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        gradientLayer.locations = [-0.3, 0.4, 0.65]
+        gradientLayer.colors = [UIColor(named: "MoonLight Asteroid_1")!.cgColor, UIColor(named: "MoonLight Asteroid_2")!.cgColor, UIColor(named: "MoonLight Asteroid_3")!.cgColor]
+        
         view.layer.insertSublayer(gradientLayer, at: 0)
         
-        animation = CABasicAnimation(keyPath: "locations")
+        animation.fromValue = [-0.3, 0.4, 0.65]
+        animation.toValue = [0.5, 1.4, 2.8]
+        animation.autoreverses = true
+        animation.duration = 4
+        animation.repeatCount = .infinity
+        
         gradientLayer.add(animation, forKey: nil)
     }
     
     private func configureCardView() {
         view.addSubview(card)
+        card.delegate = self
     }
     
     private func configureRefreshImageView() {
         view.addSubview(refreshImageView)
     }
     
+    private func configureFavoritesButton() {
+        view.addSubview(favoritesButton)
+        
+        favoritesButton.set(image: UIImage(systemName: SFSymbols.star.rawValue) ?? UIImage(), tintColor: UIColor.label, link: nil)
+        favoritesButton.addTarget(self, action: #selector(presentFavoritesViewController), for: .touchUpInside)
+    }
+    
     private func configureFilterButton() {
         view.addSubview(filterButton)
         
-        filterButton.set(image: UIImage(systemName: SFSymbols.filer.rawValue) ?? UIImage(), tintColor: UIColor.white, link: nil)
+        filterButton.set(image: UIImage(systemName: SFSymbols.filer.rawValue) ?? UIImage(), tintColor: UIColor.label, link: nil)
         filterButton.addTarget(self, action: #selector(presentSettingsViewController), for: .touchUpInside)
     }
     
@@ -90,20 +100,49 @@ class ViewController: UIViewController {
         self.card.addGestureRecognizer(panGestureRecognizer)
     }
     
+    // MARK: - Fetch Data API
+    
     private func fetchData(type: Types?, participants: Int?, price: Double?) {
-        boredManager.fetchData(type: type, participants: participants, price: price) { (result) in
-            switch result {
-            case .success(let activity):
-                DispatchQueue.main.async {
-                    self.boredModel = activity
-                    self.card.set(with: activity)
+        DispatchQueue.global(qos: .background).async {
+            self.boredManager.fetchData(type: type, participants: participants, price: price) { [weak self] (result) in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let activity):
+                    DispatchQueue.main.async {
+                        self.boredModel = activity
+                        self.card.set(with: activity)
+                    }
+                case .failure(let error):
+                    self.presentCustomAlert(title: "Error", message: error.rawValue)
                 }
-            case .failure(let error):
-                print(error)
-                self.presentAlert(title: "Error", message: error.rawValue)
             }
         }
     }
+    
+    //MARK: - Support functions
+    
+    private func rotate(_ view: UIView, tag: Int) {
+        let diff = self.view.center.x - self.card.center.x
+        var coeff: CGFloat = 0
+        
+        if tag == 1 {
+            coeff = (self.view.frame.width / 2) / 15
+        } else {
+            coeff = (self.view.frame.width / 2) / 0.4
+        }
+        view.transform = CGAffineTransform(rotationAngle: -diff / coeff)
+    }
+    
+    private func saveToDB(with model: BoredActivity?) {
+        guard let newModel = model else {
+            self.presentCustomAlert(title: "Error", message: "Can't save this… 😞")
+            return
+        }
+        DataBaseManager.shared.saveActivity(with: newModel)
+    }
+    
+    //MARK: - Objective-C functions
     
     @objc private func increaseObject(recognizer: UIPanGestureRecognizer) {
         
@@ -112,28 +151,38 @@ class ViewController: UIViewController {
         if (recognizer.state == .began) {
             print("Gesture began")
         } else if (recognizer.state == .changed) {
-            rotate(self.card, with: translation.y)
+            
+            rotate(self.card, tag: 0)
+            rotate(self.refreshImageView, tag: 1)
             
             let newX = card.center.x + translation.x
             let newY = card.center.y
             
             self.card.center = CGPoint(x: newX, y: newY)
             recognizer.setTranslation(.zero, in: self.view)
+            
         } else if (recognizer.state == .ended) {
             
             if (self.card.center.x > self.view.frame.width - 20) {
                 UIView.animate(withDuration: 0.2) {
-                    self.card.center.x += self.view.frame.width * 2
-                } completion: { (_) in
-                    self.isNeedToFetch = true
+                    self.card.center.x += self.view.frame.width
+                } completion: { (done) in
+                    self.isNeedToFetch = done ? true : false
+                    self.fetchData(type: self.tempType,
+                                   participants: self.tempParticipants,
+                                   price: self.tempPrice)
+                    self.card.alpha = 0
                 }
             } else if (self.card.center.x < 20) {
                 UIView.animate(withDuration: 0.2) {
-                    self.card.center.x -= self.view.frame.width * 2
-                } completion: { (_) in
-                    guard let model = self.boredModel else { return }
-                    DataBaseManager.shared.saveActivity(with: model)
-                    self.isNeedToFetch = true
+                    self.card.center.x -= self.view.frame.width
+                } completion: { (done) in
+                    self.saveToDB(with: self.boredModel)
+                    self.fetchData(type: self.tempType,
+                                   participants: self.tempParticipants,
+                                   price: self.tempPrice)
+                    self.card.alpha = 0
+                    
                 }
             }
             
@@ -144,60 +193,40 @@ class ViewController: UIViewController {
                 
                 self.card.transform = .identity
                 self.refreshImageView.transform = .identity
-            }
-
-            if (self.isNeedToFetch) {
-                self.fetchData(type: self.tempType,
-                               participants: self.tempParticipants,
-                               price: self.tempPrice)
-                
-                self.isNeedToFetch = false
+            } completion: { (_) in
+                UIView.animate(withDuration: 0.1, delay: 0.3) {
+                    self.card.alpha = 1
+                }
             }
         }
     }
     
-    private func increase(_ view: UIView, with translationValue: CGFloat) {
-        let coeff: CGFloat = 0.03
-        let scale = abs(translationValue) * coeff
-        
-        if (scale > 1 && self.refreshImageView.frame.width * scale <= 80) {
-            view.transform = CGAffineTransform(scaleX: scale, y: scale)
+    @objc private func openSafariWithLink(with link: String) {
+        if let url = URL(string: link) {
+            let safariVC = SFSafariViewController(url: url)
+            safariVC.delegate = self
+            
+            present(safariVC, animated: true, completion: nil)
         }
     }
     
-    private func rotate(_ view: UIView, with translateionValue: CGFloat) {
-        let diff = self.view.center.x - self.card.center.x
-        let coeff = (self.view.frame.width / 2) / 0.4
-        
-        view.transform = CGAffineTransform(rotationAngle: -diff / coeff)
-    }
-    
-    @objc private func getDataFromSettingsVC(notification: Notification) {
-        let half = notification.object as! HalfBoredActivity
-        
-        self.tempParticipants = half.participants
-        self.tempType = half.type
-        self.tempPrice = half.price
-        
-        fetchData(type: self.tempType,
-                  participants: self.tempParticipants,
-                  price: self.tempPrice)
-    }
-    
-    @objc private func openSafariWithLink(notification: Notification) {
-        print("Link: ", notification.object)
+    @objc private func presentFavoritesViewController() {
+        let favoritesVC = FavoritesViewController()
+        let navController = UINavigationController(rootViewController: favoritesVC)
+        self.present(navController, animated: true, completion: nil)
     }
     
     @objc private func presentSettingsViewController() {
         let settingsVC = SettingsViewController()
-        self.present(settingsVC,
-                     animated: true,
-                     completion: nil)
+        settingsVC.delegate = self
+        self.present(settingsVC, animated: true, completion: nil)
     }
-    
-    //MARK: - Constraints
-    
-    private func setUpConstraints() {
+}
+
+//MARK: - Constraints
+
+extension ViewController {
+    func setUpConstraints() {
         
         gradientLayer.frame = view.bounds
         
@@ -210,16 +239,41 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             refreshImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            refreshImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1),
-            refreshImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1),
-            refreshImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+            refreshImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07),
+            refreshImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07),
+            refreshImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
         
         NSLayoutConstraint.activate([
-            filterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
-            filterButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
-            filterButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+            favoritesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            favoritesButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            favoritesButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            favoritesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
+        ])
+        
+        NSLayoutConstraint.activate([
+            filterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            filterButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            filterButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
             filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)
         ])
+    }
+}
+
+extension ViewController: BoringButtonDelegate {
+    func set(link: String) {
+        openSafariWithLink(with: link)
+    }
+}
+
+extension ViewController: SettingsDelegate {
+    func set(model: HalfBoredActivity) {
+        self.tempParticipants = model.participants
+        self.tempType = model.type
+        self.tempPrice = model.price
+        
+        fetchData(type: self.tempType,
+                  participants: self.tempParticipants,
+                  price: self.tempPrice)
     }
 }

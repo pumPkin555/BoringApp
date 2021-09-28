@@ -30,16 +30,26 @@ class BoringButton: UIButton {
         configureBookMark(with: image, tintColor: tintColor)
     }
     
+    func hide() {
+        self.isHidden = true
+    }
+    
+    func getLink() -> String? {
+        guard let link = self.link else { return nil }
+        return link
+    }
+    
     private func configureBookMark(with image: UIImage, tintColor: UIColor) {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.setImage(image, for: .normal)
         self.backgroundColor = UIColor.clear
         self.tintColor = tintColor
+        self.isHidden = false
         
-        self.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
+//        self.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
     }
     
-    @objc private func linkButtonTapped() {
-        NotificationCenter.default.post(name: .link, object: self.link)
-    }
+//    @objc private func linkButtonTapped() {
+//        NotificationCenter.default.post(name: .link, object: self.link)
+//    }
 }

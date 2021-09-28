@@ -7,14 +7,15 @@
 
 import UIKit
 
-class CardView: UIView {
+class CardView: UIView, UIViewProtocol {
 
     let activityLabel: ActivityLabel = ActivityLabel()
     let activityType: ActivityType = ActivityType()
     let participantView: BoringStackView = BoringStackView()
     let priceView: BoringStackView = BoringStackView()
-    let bookMark: BoringButton = BoringButton()
     let linkButton: BoringButton = BoringButton()
+    
+    var delegate: BoringButtonDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,76 +25,7 @@ class CardView: UIView {
         configureActivityLabel()
         configureParticipantView()
         configurePriceView()
-        configureBookMark()
-    }
-    
-    init(backgroundColor: UIColor) {
-        super.init(frame: .zero)
-        self.backgroundColor = backgroundColor
-        
-        configureView()
-        configureActivityTypeLabel()
-        configureActivityLabel()
-        configureParticipantView()
-        configurePriceView()
-        configureBookMark()
         configureLinkButton()
-    }
-    
-    func set(with model: BoredActivity) {
-        
-        self.activityLabel.set(text: model.activity)
-        self.activityType.set(text: model.type)
-        
-        if (model.participants > 1) {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(), text: "\(model.participants)")
-        } else {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(), text: "\(model.participants)")
-        }
-        
-        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(), text: "\(model.price)")
-        self.bookMark.set(image: UIImage(systemName: SFSymbols.bookmark.rawValue) ?? UIImage(), tintColor: UIColor.white, link: nil)
-        
-        configureView()
-        configureActivityTypeLabel()
-        configureActivityLabel()
-        configureParticipantView()
-        configurePriceView()
-        configureBookMark()
-        
-        if (model.link != "") {
-            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(), tintColor: UIColor.systemBlue, link: model.link)
-            
-            configureLinkButton()
-        }
-    }
-    
-    func set2(with model: SavedBoredActivity) {
-        
-        self.activityLabel.set(text: model.activity ?? "None")
-        self.activityType.set(text: model.type ?? "None")
-        
-        if (model.participants > 1) {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(), text: "\(model.participants)")
-        } else {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(), text: "\(model.participants)")
-        }
-        
-        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(), text: "\(model.price)")
-        self.bookMark.set(image: UIImage(systemName: SFSymbols.bookmark.rawValue) ?? UIImage(), tintColor: UIColor.white, link: nil)
-        
-        configureView()
-        configureActivityTypeLabel()
-        configureActivityLabel()
-        configureParticipantView()
-        configurePriceView()
-        configureBookMark()
-        
-        if (model.link != "") {
-            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(), tintColor: UIColor.systemBlue, link: model.link)
-            
-            configureLinkButton()
-        }
     }
     
     override func layoutSubviews() {
@@ -106,10 +38,92 @@ class CardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureView() {
+    func set(with model: BoredActivity) {
+        
+        self.activityLabel.set(text: model.activity)
+        self.activityType.set(text: model.type)
+        
+        if (model.participants > 1) {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        } else {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        }
+        
+        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
+                           text: "\(model.price)")
+        
+        configureView()
+        configureActivityTypeLabel()
+        configureActivityLabel()
+        configureParticipantView()
+        configurePriceView()
+        
+        if (model.link != "") {
+            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
+                                tintColor: UIColor.systemBlue,
+                                link: model.link)
+            
+            configureLinkButton()
+        } else {
+            self.linkButton.hide()
+            configureLinkButton()
+        }
+    }
+    
+    func set2(with model: SavedBoredActivity) {
+        
+        self.activityLabel.set(text: model.activity ?? "None")
+        self.activityType.set(text: model.type ?? "None")
+        
+        if (model.participants > 1) {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        } else {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        }
+        
+        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
+                           text: "\(model.price)")
+        
+        configureView()
+        configureActivityTypeLabel()
+        configureActivityLabel()
+        configureParticipantView()
+        configurePriceView()
+        
+        if (model.link != "") {
+            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
+                                tintColor: UIColor.systemBlue,
+                                link: model.link)
+            
+            configureLinkButton()
+        } else {
+            self.linkButton.hide()
+        }
+    }
+    
+    func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.clipsToBounds = true
+        
+        self.backgroundColor = UIColor.clear
+        self.layer.borderWidth = 3
+        self.layer.borderColor = UIColor.secondaryLabel.cgColor
+        
+        configureBlurEffect()
     }
+    
+    private func configureBlurEffect() {
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.frame = self.bounds
+        self.insertSubview(blurView, at: 0)
+    }
+    
     
     private func configureActivityTypeLabel() {
         self.addSubview(activityType)
@@ -127,17 +141,19 @@ class CardView: UIView {
         self.addSubview(priceView)
     }
     
-    private func configureBookMark() {
-        self.addSubview(bookMark)
-        
-        bookMark.addTarget(self, action: #selector(bookMarkTapped), for: .touchUpInside)
-    }
-    
     private func configureLinkButton() {
         self.addSubview(linkButton)
+        
+        linkButton.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
     }
     
-    private func setUpConstraints() {
+    @objc private func linkButtonTapped() {
+        if let link = linkButton.getLink() {
+            delegate?.set(link: link)
+        }
+    }
+    
+    func setUpConstraints() {
         let viewsArray: [UIView] = [participantView, priceView]
         
         NSLayoutConstraint.activate([
@@ -150,20 +166,13 @@ class CardView: UIView {
         for view in viewsArray {
             NSLayoutConstraint.activate([
                 view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.07),
-                view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+                view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.29),
             ])
         }
         
         NSLayoutConstraint.activate([
-            bookMark.topAnchor.constraint(equalTo: self.topAnchor),
-            bookMark.widthAnchor.constraint(equalTo: activityType.heightAnchor),
-            bookMark.heightAnchor.constraint(equalTo: activityType.heightAnchor),
-            bookMark.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
-        ])
-        
-        NSLayoutConstraint.activate([
             participantView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            priceView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            priceView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             participantView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             priceView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
         ])
@@ -177,17 +186,9 @@ class CardView: UIView {
         
         NSLayoutConstraint.activate([
             linkButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.07),
-            linkButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.07),
+            linkButton.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.07),
             linkButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             linkButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
         ])
-    }
-    
-    @objc private func bookMarkTapped() {
-        if (bookMark.imageView?.image == UIImage(systemName: SFSymbols.bookmark.rawValue)) {
-            bookMark.set(image: UIImage(systemName: SFSymbols.bookmarkFill.rawValue) ?? UIImage(), tintColor: UIColor.white, link: nil)
-        } else {
-            bookMark.set(image: UIImage(systemName: SFSymbols.bookmark.rawValue) ?? UIImage(), tintColor: UIColor.white, link: nil)
-        }
     }
 }

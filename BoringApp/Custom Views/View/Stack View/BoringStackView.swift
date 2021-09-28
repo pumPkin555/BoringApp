@@ -36,6 +36,7 @@ class BoringStackView: UIStackView, UIViewProtocol {
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
+        
         self.axis = .horizontal
         self.spacing = 4
         self.distribution = .fillEqually
@@ -54,12 +55,14 @@ class BoringStackView: UIStackView, UIViewProtocol {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = image
         imageView.backgroundColor = UIColor.clear
-        imageView.tintColor = UIColor.white
+        imageView.tintColor = UIColor.label
+        imageView.contentMode = .scaleAspectFit
     }
     
     private func configureParticipantLabel() {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
+        label.textColor = .label
         label.textAlignment = .center
         label.backgroundColor = UIColor.clear
         label.sizeToFit()

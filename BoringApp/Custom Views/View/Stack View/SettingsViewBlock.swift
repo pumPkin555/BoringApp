@@ -27,7 +27,7 @@ class SettingsViewBlock: UIStackView, UIViewProtocol {
         self.backgroundColor = UIColor.clear
         
         self.axis = .vertical
-//        self.distribution = .fillEqually
+        self.distribution = .fillEqually
 //        self.spacing = 5
         
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))

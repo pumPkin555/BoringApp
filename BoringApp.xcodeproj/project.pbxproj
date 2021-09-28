@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C4EB4E7DEE0652896A1AA86 /* Pods_BoringApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D99AEBAC04D31549A040E5 /* Pods_BoringApp.framework */; };
 		3B5CA0BA27024C2100124469 /* BoringApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B5CA0B827024C2100124469 /* BoringApp.xcdatamodeld */; };
 		3B67845726FFB330000919AB /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67845626FFB330000919AB /* UIColor+ext.swift */; };
 		3B7AD2882702601200A8733F /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7AD2872702601200A8733F /* DataBaseManager.swift */; };
@@ -20,6 +21,7 @@
 		3B921FF526FD1DD4006F2F3C /* ParticipantsBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B921FF426FD1DD4006F2F3C /* ParticipantsBlock.swift */; };
 		3B921FFC26FD2359006F2F3C /* PriceBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B921FFB26FD2359006F2F3C /* PriceBlock.swift */; };
 		3B92200026FD33C8006F2F3C /* SettingsViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */; };
+		3BBF811D2703C138008B93D1 /* LonelyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF811C2703C138008B93D1 /* LonelyManager.swift */; };
 		3BD16F0B2700799F001586BF /* BoringStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F0A2700799F001586BF /* BoringStackView.swift */; };
 		3BD16F0F27008D45001586BF /* UIViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F0E27008D45001586BF /* UIViewController+ext.swift */; };
 		3BD16F1C2700D89C001586BF /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F1B2700D89C001586BF /* NotificationCenter.swift */; };
@@ -44,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CDDAD67F929C96A1A2D9DD3 /* Pods-BoringApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoringApp.debug.xcconfig"; path = "Target Support Files/Pods-BoringApp/Pods-BoringApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5CA0B927024C2100124469 /* BoredActivityStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoredActivityStorage.xcdatamodel; sourceTree = "<group>"; };
 		3B67845626FFB330000919AB /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
 		3B7AD2872702601200A8733F /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		3B921FF426FD1DD4006F2F3C /* ParticipantsBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsBlock.swift; sourceTree = "<group>"; };
 		3B921FFB26FD2359006F2F3C /* PriceBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceBlock.swift; sourceTree = "<group>"; };
 		3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewBlock.swift; sourceTree = "<group>"; };
+		3BBF811C2703C138008B93D1 /* LonelyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LonelyManager.swift; sourceTree = "<group>"; };
 		3BD16F0A2700799F001586BF /* BoringStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringStackView.swift; sourceTree = "<group>"; };
 		3BD16F0E27008D45001586BF /* UIViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ext.swift"; sourceTree = "<group>"; };
 		3BD16F1B2700D89C001586BF /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 		3BFACE2026FA67020021FBC3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3BFACE2D26FA6D2F0021FBC3 /* UIView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ext.swift"; sourceTree = "<group>"; };
 		3BFACE3126FA6F760021FBC3 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
+		66D99AEBAC04D31549A040E5 /* Pods_BoringApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoringApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D30DCF317902971B70B405F1 /* Pods-BoringApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoringApp.release.xcconfig"; path = "Target Support Files/Pods-BoringApp/Pods-BoringApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +93,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C4EB4E7DEE0652896A1AA86 /* Pods_BoringApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CEE399316F27683C38F1248 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66D99AEBAC04D31549A040E5 /* Pods_BoringApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3B5CA0B727024BF600124469 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,13 +124,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		3B891CC22703217F00D78756 /* Trash */ = {
+			isa = PBXGroup;
+			children = (
+				3BF3B81726FBA393006340DD /* StackView.swift */,
+			);
+			path = Trash;
+			sourceTree = "<group>";
+		};
 		3B8B44CC26FD0CCD00C7E60D /* Stack View */ = {
 			isa = PBXGroup;
 			children = (
+				3BD16F0A2700799F001586BF /* BoringStackView.swift */,
+				3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */,
+				3BBF81192703C06C008B93D1 /* Card */,
 				3B921FFA26FD234A006F2F3C /* Price */,
 				3B921FF326FD1DC1006F2F3C /* Participants */,
 				3B921FF126FD1DBA006F2F3C /* Type */,
-				3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */,
 			);
 			path = "Stack View";
 			sourceTree = "<group>";
@@ -146,6 +171,31 @@
 			path = Price;
 			sourceTree = "<group>";
 		};
+		3BBF81192703C06C008B93D1 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				3BFACE2026FA67020021FBC3 /* CardView.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		3BBF811A2703C0B3008B93D1 /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				3BF3B82C26FBC45B006340DD /* MyImageView.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		3BBF811B2703C0CB008B93D1 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				3BFACE3126FA6F760021FBC3 /* ActivityType.swift */,
+				3BF3B80526FB40F2006340DD /* ActivityLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
 		3BF3B82526FBC29E006340DD /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +209,8 @@
 			children = (
 				3BFACDF026FA54030021FBC3 /* BoringApp */,
 				3BFACDEF26FA54030021FBC3 /* Products */,
+				6F437323C32F6AAC0E3E31C5 /* Pods */,
+				0CEE399316F27683C38F1248 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +274,7 @@
 			children = (
 				3BFACE1326FA54F00021FBC3 /* BoredManager.swift */,
 				3B7AD2872702601200A8733F /* DataBaseManager.swift */,
+				3BBF811C2703C138008B93D1 /* LonelyManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -238,6 +291,7 @@
 		3BFACE1F26FA66F10021FBC3 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B891CC22703217F00D78756 /* Trash */,
 				3B7AD28A2702853500A8733F /* Cells */,
 				3BFACE2726FA6BEF0021FBC3 /* Buttons */,
 				3BFACE2626FA6BD90021FBC3 /* View */,
@@ -248,13 +302,9 @@
 		3BFACE2626FA6BD90021FBC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3BBF811B2703C0CB008B93D1 /* Label */,
+				3BBF811A2703C0B3008B93D1 /* ImageView */,
 				3B8B44CC26FD0CCD00C7E60D /* Stack View */,
-				3BFACE2026FA67020021FBC3 /* CardView.swift */,
-				3BFACE3126FA6F760021FBC3 /* ActivityType.swift */,
-				3BF3B80526FB40F2006340DD /* ActivityLabel.swift */,
-				3BF3B81726FBA393006340DD /* StackView.swift */,
-				3BF3B82C26FBC45B006340DD /* MyImageView.swift */,
-				3BD16F0A2700799F001586BF /* BoringStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,6 +329,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		6F437323C32F6AAC0E3E31C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CDDAD67F929C96A1A2D9DD3 /* Pods-BoringApp.debug.xcconfig */,
+				D30DCF317902971B70B405F1 /* Pods-BoringApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -286,9 +345,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BFACE0226FA54060021FBC3 /* Build configuration list for PBXNativeTarget "BoringApp" */;
 			buildPhases = (
+				0CB66D9072912B8279C1429E /* [CP] Check Pods Manifest.lock */,
 				3BFACDEA26FA54030021FBC3 /* Sources */,
 				3BFACDEB26FA54030021FBC3 /* Frameworks */,
 				3BFACDEC26FA54030021FBC3 /* Resources */,
+				3DA1855C6E8D39B2550F3239 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,6 +404,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0CB66D9072912B8279C1429E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BoringApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3DA1855C6E8D39B2550F3239 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BoringApp/Pods-BoringApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BoringApp/Pods-BoringApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BoringApp/Pods-BoringApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3BFACDEA26FA54030021FBC3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -373,6 +476,7 @@
 				3B921FFC26FD2359006F2F3C /* PriceBlock.swift in Sources */,
 				3BF3B81826FBA393006340DD /* StackView.swift in Sources */,
 				3BFACDF426FA54030021FBC3 /* SceneDelegate.swift in Sources */,
+				3BBF811D2703C138008B93D1 /* LonelyManager.swift in Sources */,
 				3BF3B82026FBBE77006340DD /* BoringButton.swift in Sources */,
 				3BD16F0F27008D45001586BF /* UIViewController+ext.swift in Sources */,
 				3BFACE1826FA5D440021FBC3 /* ErrorMessages.swift in Sources */,
@@ -515,6 +619,7 @@
 		};
 		3BFACE0326FA54060021FBC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CDDAD67F929C96A1A2D9DD3 /* Pods-BoringApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -534,6 +639,7 @@
 		};
 		3BFACE0426FA54060021FBC3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D30DCF317902971B70B405F1 /* Pods-BoringApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
