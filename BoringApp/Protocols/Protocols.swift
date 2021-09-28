@@ -5,7 +5,7 @@
 //  Created by Ivanov Viktor on 22.09.2021.
 //
 
-import Foundation
+import UIKit
 
 
 @objc protocol UIViewProtocol {
@@ -16,4 +16,12 @@ import Foundation
 protocol UIViewControllerProtocol {
     func configureViewController()
     func setUpConstraints()
+}
+
+protocol ActivityTypeProtocol {
+    func set(type: Types)
+}
+
+protocol ParticipantsProtocol {
+    func set(quantity: Int)
 }

@@ -11,6 +11,7 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
     
     let label: UILabel = UILabel()
     let textField: UITextField = UITextField()
+    let toolBar = UIToolbar()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +31,7 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
         self.spacing = 5
         
         configureLabel()
+        configureToolBar()
         configureTextField()
         
         let views: [UIView] = [label, textField]
@@ -52,6 +54,19 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
         textField.textColor = UIColor.white
         textField.font = UIFont(name: "Helvetica", size: 14)
         textField.placeholder = "Type the number of participants in your activity"
+        textField.keyboardType = .numberPad
+        textField.inputAccessoryView = toolBar
     }
     
+    private func configureToolBar() {
+        let hideButton = UIBarButtonItem(title: "Hide", style: .plain, target: self, action: #selector(hideKeyboard))
+        toolBar.items = [hideButton]
+        toolBar.sizeToFit()
+        toolBar.backgroundColor = UIColor.systemBackground
+    }
+    
+    @objc private func hideKeyboard() {
+        NotificationCenter.default.post(name: .participants, object: Int(self.textField.text ?? "1"))
+        self.endEditing(true)
+    }
 }

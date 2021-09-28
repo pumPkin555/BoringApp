@@ -30,6 +30,9 @@ class SettingsViewBlock: UIStackView, UIViewProtocol {
 //        self.distribution = .fillEqually
 //        self.spacing = 5
         
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        self.addGestureRecognizer(tap)
+        
         let views: [UIView] = [typeBlock, participantsBlock, priceBlock]
         
         for view in views {
@@ -39,6 +42,5 @@ class SettingsViewBlock: UIStackView, UIViewProtocol {
         self.setCustomSpacing(10, after: typeBlock)
         self.setCustomSpacing(10, after: participantsBlock)
         self.setCustomSpacing(self.frame.height / 3, after: priceBlock)
-        
     }
 }

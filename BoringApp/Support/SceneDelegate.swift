@@ -20,8 +20,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.backgroundColor = UIColor.systemBackground
-        window?.rootViewController = ViewController()
+        window?.rootViewController = createTabBar()
         window?.makeKeyAndVisible()
+    }
+    
+    func createTabBar() -> UITabBarController {
+        let firstVC = ViewController()
+        let secondVC = FavoritesViewController()
+        
+        firstVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        secondVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        
+        let tabbar = UITabBarController()
+        tabbar.viewControllers = [firstVC, secondVC]
+        
+        return tabbar
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -9,8 +9,24 @@ import Foundation
 
 class BoredManager {
     
-    func fetchData(completion: @escaping (Result<BoredActivity, BAError>) -> Void) {
-        let urlString: String = "https://www.boredapi.com/api/activity/"
+    func fetchData(type: Types?, participants: Int?, price: Double?, completion: @escaping (Result<BoredActivity, BAError>) -> Void) {
+        
+        var participantsString = ""
+        var priceStirng = ""
+        var typeString = ""
+        
+        
+        if (participants != nil) {
+            participantsString = "participants=\(participants!)"
+        }
+        if (price != nil) {
+            priceStirng = "&price=\(price!)"
+        }
+        if (type != nil) {
+            typeString = "&type=\(type!.rawValue)"
+        }
+        
+        let urlString: String = "https://www.boredapi.com/api/activity?\(participantsString)\(priceStirng)\(typeString)"
         
         guard let url = URL(string: urlString) else { return }
         
@@ -36,7 +52,7 @@ class BoredManager {
                 let activity = try decoder.decode(BoredActivity.self, from: data)
                 completion(.success(activity))
             } catch {
-                completion(.failure(.invalidData))
+                completion(.failure(error as! BAError))
             }
         }
         dataTask.resume()
