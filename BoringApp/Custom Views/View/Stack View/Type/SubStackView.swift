@@ -9,28 +9,16 @@ import UIKit
 
 class SubStackView: UIStackView, UIViewProtocol {
     
-    let educationButton: ActivityButton = ActivityButton()
-    let recreationalButton: ActivityButton = ActivityButton()
-    let socialButton: ActivityButton = ActivityButton()
-    let diyButton: ActivityButton = ActivityButton()
-    let charityButton: ActivityButton = ActivityButton()
-    let cookingButton: ActivityButton = ActivityButton()
-    let relaxationButton: ActivityButton = ActivityButton()
-    let musicButton: ActivityButton = ActivityButton()
-    let busyworkButton: ActivityButton = ActivityButton()
-    
-//    var array: [ActivityButton] = []
-//    var array2: [ActivityButton] = []
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        array = [educationButton, recreationalButton, recreationalButton, socialButton, diyButton, charityButton, cookingButton, relaxationButton, musicButton, busyworkButton]
         configureView()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Configure view
     
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +27,8 @@ class SubStackView: UIStackView, UIViewProtocol {
         self.distribution = .fillProportionally
         self.spacing = 10
     }
+    
+    //MARK: - Configure SubStackView with buttons
     
     func set(numberOfButtons: Int, with titles: [String], with colors: [UIColor]) {
         for i in 0..<numberOfButtons {

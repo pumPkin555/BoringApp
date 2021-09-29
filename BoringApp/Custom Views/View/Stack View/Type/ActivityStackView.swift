@@ -18,6 +18,18 @@ class ActivityStackView: UIStackView, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configure view
+    
+    func configureView() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = UIColor.clear
+        self.axis = .vertical
+        self.distribution = .fillEqually
+        self.spacing = 10
+    }
+    
+    //MARK: - Configure StackView with subStackView
+    
     func set(numberOfSubStackViews: Int, numberOfButtons: Int, titles: [[String]], buttonColors: [[UIColor]]) {
         for i in 0..<numberOfSubStackViews {
             let stackView = SubStackView()
@@ -26,13 +38,5 @@ class ActivityStackView: UIStackView, UIViewProtocol {
         }
         
         configureView()
-    }
-    
-    func configureView() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor.clear
-        self.axis = .vertical
-        self.distribution = .fillEqually
-        self.spacing = 10
     }
 }

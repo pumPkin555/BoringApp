@@ -23,9 +23,6 @@ class DataBaseManager {
         
         var resultArray: [SavedBoredActivity] = []
         
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let context = appDelegate.persistentContanier.viewContext
-        
         let fetchRequest: NSFetchRequest<SavedBoredActivity> = SavedBoredActivity.fetchRequest()
         
         do {

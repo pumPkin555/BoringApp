@@ -26,12 +26,7 @@ class BoringStackView: UIStackView, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(image: UIImage, text: String) {
-        self.image = image
-        self.text = text
-        
-        configureView()
-    }
+    //MARK: - Configure interface
     
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -66,5 +61,14 @@ class BoringStackView: UIStackView, UIViewProtocol {
         label.textAlignment = .center
         label.backgroundColor = UIColor.clear
         label.sizeToFit()
+    }
+    
+    //MARK: - Set stackView with image & text
+    
+    func set(image: UIImage, text: String) {
+        self.image = image
+        self.text = text
+        
+        configureView()
     }
 }

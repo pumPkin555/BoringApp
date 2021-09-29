@@ -25,12 +25,6 @@ class TypeBlock: UIStackView, UIViewProtocol {
         [UIColor(hex: "#fe8c00")!, UIColor(hex: "#ff0084")!, UIColor(hex: "#283048")!]
     ]
     
-//    let buttonColors2: [[UIColor]] = [
-//        [UIColor(hex: "#DD2476")!, UIColor(hex: "#24FE41")!, UIColor(hex: "#F3A183")!],
-//        [UIColor(hex: "#2B32B2")!, UIColor(hex: "#00CDAC")!, UIColor(hex: "#9733EE")!],
-//        [UIColor(hex: "#f83600")!, UIColor(hex: "#33001b")!, UIColor(hex: "#859398")!]
-//    ]
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -40,20 +34,19 @@ class TypeBlock: UIStackView, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configure view
+    
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
         
         self.axis = .vertical
-//        self.distribution = .fill
-//        self.spacing = 5
         
         
         configureLabel()
         configureStackView()
-//        configureLineView()
         
-        let views = [label, activityStackView] // , line
+        let views = [label, activityStackView]
         for view in views {
             self.addArrangedSubview(view)
         }

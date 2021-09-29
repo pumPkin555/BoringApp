@@ -38,72 +38,7 @@ class CardView: UIView, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(with model: BoredActivity) {
-        
-        self.activityLabel.set(text: model.activity)
-        self.activityType.set(text: model.type)
-        
-        if (model.participants > 1) {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
-                                     text: "\(model.participants)")
-        } else {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
-                                     text: "\(model.participants)")
-        }
-        
-        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
-                           text: "\(model.price)")
-        
-        configureView()
-        configureActivityTypeLabel()
-        configureActivityLabel()
-        configureParticipantView()
-        configurePriceView()
-        
-        if (model.link != "") {
-            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
-                                tintColor: UIColor.systemBlue,
-                                link: model.link)
-            
-            configureLinkButton()
-        } else {
-            self.linkButton.hide()
-            configureLinkButton()
-        }
-    }
-    
-    func set2(with model: SavedBoredActivity) {
-        
-        self.activityLabel.set(text: model.activity ?? "None")
-        self.activityType.set(text: model.type ?? "None")
-        
-        if (model.participants > 1) {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
-                                     text: "\(model.participants)")
-        } else {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
-                                     text: "\(model.participants)")
-        }
-        
-        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
-                           text: "\(model.price)")
-        
-        configureView()
-        configureActivityTypeLabel()
-        configureActivityLabel()
-        configureParticipantView()
-        configurePriceView()
-        
-        if (model.link != "") {
-            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
-                                tintColor: UIColor.systemBlue,
-                                link: model.link)
-            
-            configureLinkButton()
-        } else {
-            self.linkButton.hide()
-        }
-    }
+    //MARK: - Configure view
     
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -147,11 +82,86 @@ class CardView: UIView, UIViewProtocol {
         linkButton.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
     }
     
+    //MARK: - Configure card with model (API)
+    
+    func set(with model: BoredActivity) {
+        
+        self.activityLabel.set(text: model.activity)
+        self.activityType.set(text: model.type)
+        
+        if (model.participants > 1) {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        } else {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        }
+        
+        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
+                           text: "\(model.price)")
+        
+        configureView()
+        configureActivityTypeLabel()
+        configureActivityLabel()
+        configureParticipantView()
+        configurePriceView()
+        
+        if (model.link != "") {
+            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
+                                tintColor: UIColor.systemBlue,
+                                link: model.link)
+            
+            configureLinkButton()
+        } else {
+            self.linkButton.hide()
+            configureLinkButton()
+        }
+    }
+    
+    //MARK: - Configure card with model (DataBase)
+    
+    func set2(with model: SavedBoredActivity) {
+        
+        self.activityLabel.set(text: model.activity ?? "None")
+        self.activityType.set(text: model.type ?? "None")
+        
+        if (model.participants > 1) {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        } else {
+            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
+                                     text: "\(model.participants)")
+        }
+        
+        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
+                           text: "\(model.price)")
+        
+        configureView()
+        configureActivityTypeLabel()
+        configureActivityLabel()
+        configureParticipantView()
+        configurePriceView()
+        
+        if (model.link != "") {
+            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
+                                tintColor: UIColor.systemBlue,
+                                link: model.link)
+            
+            configureLinkButton()
+        } else {
+            self.linkButton.hide()
+        }
+    }
+    
+    //MARK: - Objective-C functions
+    
     @objc private func linkButtonTapped() {
         if let link = linkButton.getLink() {
             delegate?.set(link: link)
         }
     }
+    
+    //MARK: - Constraints
     
     func setUpConstraints() {
         let viewsArray: [UIView] = [participantView, priceView]

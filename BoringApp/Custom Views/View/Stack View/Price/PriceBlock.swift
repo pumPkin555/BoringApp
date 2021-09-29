@@ -28,6 +28,8 @@ class PriceBlock: UIView, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configure view
+    
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
@@ -48,6 +50,8 @@ class PriceBlock: UIView, UIViewProtocol {
         switcher.backgroundColor = UIColor.clear
         switcher.isOn = false
     }
+    
+    //MARK: - Constraints
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([

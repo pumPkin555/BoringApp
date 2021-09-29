@@ -8,6 +8,7 @@
 import Foundation
 
 enum SFSymbols: String {
+    case some = "xmark"
     case human = "person.circle"
     case people = "person.2.circle"
     case question = "questionmark.circle"

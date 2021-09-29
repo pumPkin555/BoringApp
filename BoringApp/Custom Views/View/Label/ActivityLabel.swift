@@ -24,10 +24,7 @@ class ActivityLabel: UILabel, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(text: String) {
-        self.text = text
-        configureView()
-    }
+    //MARK: - Configure button
     
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -37,5 +34,12 @@ class ActivityLabel: UILabel, UIViewProtocol {
         self.font = UIFont(name: "Helvetica", size: 40)
         self.textAlignment = .left
         self.sizeToFit()
+    }
+    
+    //MARK: - Set button text
+    
+    func set(text: String) {
+        self.text = text
+        configureView()
     }
 }

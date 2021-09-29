@@ -22,6 +22,8 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configure view
+    
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
@@ -65,6 +67,8 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
         toolBar.sizeToFit()
         toolBar.backgroundColor = UIColor.systemBackground
     }
+    
+    //MARK: - Objective-C functions
     
     @objc private func hideKeyboard() {
         NotificationCenter.default.post(name: .participants, object: Int(self.textField.text ?? "1"))

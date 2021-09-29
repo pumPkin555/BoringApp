@@ -10,6 +10,7 @@ import UIKit
 class BoringCell: UITableViewCell, UIViewProtocol {
     
     static let reuseID: String = "BoringCell"
+    
     private let card: CardView = CardView()
     
 
@@ -27,17 +28,23 @@ class BoringCell: UITableViewCell, UIViewProtocol {
         setUpConstraints()
     }
     
+    //MARK: - Configure UI
+    
     func configureView() {
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear
         self.contentView.addSubview(self.card)
     }
     
+    //MARK: - Set card with model
+    
     func set(with model: SavedBoredActivity) {
         self.card.set2(with: model)
         
         configureView()
     }
+    
+    //MARK: - Constraints
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([

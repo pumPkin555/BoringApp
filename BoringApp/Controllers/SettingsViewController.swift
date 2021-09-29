@@ -35,6 +35,8 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
         setUpConstraints()
     }
     
+    //MARK: - Configure User Interface
+    
     func configureViewController() {
         view.backgroundColor = UIColor.systemBackground
     }
@@ -63,6 +65,14 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
         doneButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
     }
     
+    //MARK: - Support functions
+    
+    private func getPrice() {
+        self.price = self.settingsBlock.priceBlock.switcher.isOn ? nil : 0.0
+    }
+    
+    //MARK: - Objective-C functions
+    
     @objc private func getType(notification: Notification) {
         type = notification.object as? Types
     }
@@ -72,6 +82,8 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     }
     
     @objc func dismissController() {
+        self.getPrice()
+        
         let model = HalfBoredActivity(type: self.type, participants: self.participants, price: self.price)
         delegate?.set(model: model)
         LonelyManager.shared.deleteAll()

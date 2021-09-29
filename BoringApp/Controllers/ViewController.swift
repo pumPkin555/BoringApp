@@ -16,17 +16,15 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     let filterButton: BoringButton = BoringButton()
     let favoritesButton: BoringButton = BoringButton()
     
+    let gradientLayer: CAGradientLayer = CAGradientLayer()
+    let animation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
+    
     let boredManager: BoredManager = BoredManager()
     var boredModel: BoredActivity?
-    
-    var isNeedToFetch: Bool = false
     
     var tempPrice: Double? = nil
     var tempType: Types? = nil
     var tempParticipants: Int? = nil
-    
-    let gradientLayer: CAGradientLayer = CAGradientLayer()
-    let animation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +38,6 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         configurePanGestureRecognizer()
         
         fetchData(type: self.tempType, participants: self.tempParticipants, price: self.tempPrice)
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(getDataFromSettingsVC(notification:)), name: .halfBoredParticipants, object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -96,7 +92,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     }
     
     private func configurePanGestureRecognizer() {
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(increaseObject))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(moveCard))
         self.card.addGestureRecognizer(panGestureRecognizer)
     }
     
@@ -144,13 +140,11 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     //MARK: - Objective-C functions
     
-    @objc private func increaseObject(recognizer: UIPanGestureRecognizer) {
+    @objc private func moveCard(recognizer: UIPanGestureRecognizer) {
         
         let translation = recognizer.translation(in: self.view)
         
-        if (recognizer.state == .began) {
-            print("Gesture began")
-        } else if (recognizer.state == .changed) {
+        if (recognizer.state == .changed) {
             
             rotate(self.card, tag: 0)
             rotate(self.refreshImageView, tag: 1)
@@ -167,7 +161,6 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x += self.view.frame.width
                 } completion: { (done) in
-                    self.isNeedToFetch = done ? true : false
                     self.fetchData(type: self.tempType,
                                    participants: self.tempParticipants,
                                    price: self.tempPrice)
@@ -213,12 +206,14 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     @objc private func presentFavoritesViewController() {
         let favoritesVC = FavoritesViewController()
         let navController = UINavigationController(rootViewController: favoritesVC)
+        
         self.present(navController, animated: true, completion: nil)
     }
     
     @objc private func presentSettingsViewController() {
         let settingsVC = SettingsViewController()
         settingsVC.delegate = self
+        
         self.present(settingsVC, animated: true, completion: nil)
     }
 }
@@ -260,11 +255,15 @@ extension ViewController {
     }
 }
 
+//MARK: - Open Safari
+
 extension ViewController: BoringButtonDelegate {
     func set(link: String) {
         openSafariWithLink(with: link)
     }
 }
+
+//MARK: - Update Data with filter
 
 extension ViewController: SettingsDelegate {
     func set(model: HalfBoredActivity) {

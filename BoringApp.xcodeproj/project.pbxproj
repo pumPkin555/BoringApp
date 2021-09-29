@@ -28,7 +28,6 @@
 		3BD16F1F2700E2CF001586BF /* HalfBoredActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F1E2700E2CF001586BF /* HalfBoredActivity.swift */; };
 		3BF3B80626FB40F2006340DD /* ActivityLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B80526FB40F2006340DD /* ActivityLabel.swift */; };
 		3BF3B80F26FB7EB3006340DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B80E26FB7EB3006340DD /* Constants.swift */; };
-		3BF3B81826FBA393006340DD /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B81726FBA393006340DD /* StackView.swift */; };
 		3BF3B82026FBBE77006340DD /* BoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B81F26FBBE77006340DD /* BoringButton.swift */; };
 		3BF3B82726FBC2A9006340DD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B82626FBC2A9006340DD /* Protocols.swift */; };
 		3BF3B82D26FBC45B006340DD /* MyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B82C26FBC45B006340DD /* MyImageView.swift */; };
@@ -67,7 +66,6 @@
 		3BD16F1E2700E2CF001586BF /* HalfBoredActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfBoredActivity.swift; sourceTree = "<group>"; };
 		3BF3B80526FB40F2006340DD /* ActivityLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLabel.swift; sourceTree = "<group>"; };
 		3BF3B80E26FB7EB3006340DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3BF3B81726FBA393006340DD /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		3BF3B81F26FBBE77006340DD /* BoringButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringButton.swift; sourceTree = "<group>"; };
 		3BF3B82626FBC2A9006340DD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		3BF3B82C26FBC45B006340DD /* MyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageView.swift; sourceTree = "<group>"; };
@@ -122,14 +120,6 @@
 				3B7AD28B2702854D00A8733F /* BoringCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		3B891CC22703217F00D78756 /* Trash */ = {
-			isa = PBXGroup;
-			children = (
-				3BF3B81726FBA393006340DD /* StackView.swift */,
-			);
-			path = Trash;
 			sourceTree = "<group>";
 		};
 		3B8B44CC26FD0CCD00C7E60D /* Stack View */ = {
@@ -291,7 +281,6 @@
 		3BFACE1F26FA66F10021FBC3 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				3B891CC22703217F00D78756 /* Trash */,
 				3B7AD28A2702853500A8733F /* Cells */,
 				3BFACE2726FA6BEF0021FBC3 /* Buttons */,
 				3BFACE2626FA6BD90021FBC3 /* View */,
@@ -474,7 +463,6 @@
 				3B8B44C026FCC93600C7E60D /* ActivityButton.swift in Sources */,
 				3B8B44CE26FD0CED00C7E60D /* SubStackView.swift in Sources */,
 				3B921FFC26FD2359006F2F3C /* PriceBlock.swift in Sources */,
-				3BF3B81826FBA393006340DD /* StackView.swift in Sources */,
 				3BFACDF426FA54030021FBC3 /* SceneDelegate.swift in Sources */,
 				3BBF811D2703C138008B93D1 /* LonelyManager.swift in Sources */,
 				3BF3B82026FBBE77006340DD /* BoringButton.swift in Sources */,

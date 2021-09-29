@@ -23,6 +23,18 @@ class ActivityType: UILabel, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configure button
+    
+    func configureView() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = UIColor.clear
+        self.textColor = UIColor.label
+        self.textAlignment = .center
+        self.sizeToFit()
+    }
+    
+    //MARK: - Set label text
+    
     func set(text: String) {
         self.text = text
         if (text == "education") {
@@ -44,14 +56,6 @@ class ActivityType: UILabel, UIViewProtocol {
         } else if (text == "busywork") {
             self.backgroundColor = UIColor.systemGray2
         }
-    }
-    
-    func configureView() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor.clear
-        self.textColor = UIColor.label
-        self.textAlignment = .center
-        self.sizeToFit()
     }
 }
 

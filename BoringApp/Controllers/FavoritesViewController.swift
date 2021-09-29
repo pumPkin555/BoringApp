@@ -31,6 +31,8 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
         setUpConstraints()
     }
     
+    //MARK: - Configure User Interface
+    
     func configureViewController() {
         view.backgroundColor = UIColor(named: "Orange_Coral_1")!
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -53,6 +55,8 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
         tableView.register(BoringCell.self, forCellReuseIdentifier: BoringCell.reuseID)
     }
     
+    //MARK: - Open Safari
+    
     private func openSafariWithLink(with link: String) {
         if let url = URL(string: link) {
             let safariVC = SFSafariViewController(url: url)
@@ -61,6 +65,8 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
             present(safariVC, animated: true, completion: nil)
         }
     }
+    
+    //MARK: - Dismiss this controller
     
     @objc private func dismissVC() {
         self.dismiss(animated: true, completion: nil)
@@ -80,6 +86,8 @@ extension FavoritesViewController {
     }
 }
 
+//MARK: - TableViewDataSource
+
 
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,6 +102,8 @@ extension FavoritesViewController: UITableViewDataSource {
         return cell
     }
 }
+
+//MARK: - TableViewDelegate
 
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

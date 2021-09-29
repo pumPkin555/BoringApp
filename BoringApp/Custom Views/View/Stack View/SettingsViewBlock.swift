@@ -22,16 +22,14 @@ class SettingsViewBlock: UIStackView, UIViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configure interface
+    
     func configureView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
         
         self.axis = .vertical
         self.distribution = .fillEqually
-//        self.spacing = 5
-        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        self.addGestureRecognizer(tap)
         
         let views: [UIView] = [typeBlock, participantsBlock, priceBlock]
         
