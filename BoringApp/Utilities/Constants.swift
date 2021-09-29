@@ -33,3 +33,8 @@ enum Types: String {
     case music = "music"
     case busywork = "busywork"
 }
+
+enum Price {
+    case cheap(min: Double, max: Double)
+    case average(min: Double, max: Double)
+}

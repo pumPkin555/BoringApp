@@ -9,7 +9,7 @@ import Foundation
 
 class BoredManager {
     
-    func fetchData(type: Types?, participants: Int?, price: Double?, completion: @escaping (Result<BoredActivity, BAError>) -> Void) {
+    func fetchData(type: Types?, participants: Int?, price: (Double, Double)?, completion: @escaping (Result<BoredActivity, BAError>) -> Void) {
         
         var participantsString = ""
         var priceStirng = ""
@@ -20,7 +20,7 @@ class BoredManager {
             participantsString = "participants=\(participants!)"
         }
         if (price != nil) {
-            priceStirng = "&price=\(price!)"
+            priceStirng = "&minprice=\(price!.0)&maxprice=\(price!.1)"
         }
         if (type != nil) {
             typeString = "&type=\(type!.rawValue)"

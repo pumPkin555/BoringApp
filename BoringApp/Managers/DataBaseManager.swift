@@ -56,11 +56,11 @@ class DataBaseManager {
         saveContext()
     }
     
-    func saveContext() {
+    private func saveContext() {
         do {
             try self.managedContext?.save()
         } catch {
-            print("FUCK ERROR")
+            print(error)
         }
     }
 }

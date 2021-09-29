@@ -10,6 +10,7 @@
 		1C4EB4E7DEE0652896A1AA86 /* Pods_BoringApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D99AEBAC04D31549A040E5 /* Pods_BoringApp.framework */; };
 		3B5CA0BA27024C2100124469 /* BoringApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B5CA0B827024C2100124469 /* BoringApp.xcdatamodeld */; };
 		3B67845726FFB330000919AB /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67845626FFB330000919AB /* UIColor+ext.swift */; };
+		3B680BEE270492280004396E /* BoringSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B680BED270492280004396E /* BoringSegmentControl.swift */; };
 		3B7AD2882702601200A8733F /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7AD2872702601200A8733F /* DataBaseManager.swift */; };
 		3B7AD28C2702854D00A8733F /* BoringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7AD28B2702854D00A8733F /* BoringCell.swift */; };
 		3B7AD28F270286FA00A8733F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7AD28E270286FA00A8733F /* FavoritesViewController.swift */; };
@@ -48,6 +49,7 @@
 		1CDDAD67F929C96A1A2D9DD3 /* Pods-BoringApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoringApp.debug.xcconfig"; path = "Target Support Files/Pods-BoringApp/Pods-BoringApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5CA0B927024C2100124469 /* BoredActivityStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoredActivityStorage.xcdatamodel; sourceTree = "<group>"; };
 		3B67845626FFB330000919AB /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
+		3B680BED270492280004396E /* BoringSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringSegmentControl.swift; sourceTree = "<group>"; };
 		3B7AD2872702601200A8733F /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		3B7AD28B2702854D00A8733F /* BoringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringCell.swift; sourceTree = "<group>"; };
 		3B7AD28E270286FA00A8733F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 				3B5CA0B827024C2100124469 /* BoringApp.xcdatamodeld */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		3B680BEC2704920A0004396E /* Segment Control */ = {
+			isa = PBXGroup;
+			children = (
+				3B680BED270492280004396E /* BoringSegmentControl.swift */,
+			);
+			path = "Segment Control";
 			sourceTree = "<group>";
 		};
 		3B7AD28A2702853500A8733F /* Cells */ = {
@@ -281,6 +291,7 @@
 		3BFACE1F26FA66F10021FBC3 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B680BEC2704920A0004396E /* Segment Control */,
 				3B7AD28A2702853500A8733F /* Cells */,
 				3BFACE2726FA6BEF0021FBC3 /* Buttons */,
 				3BFACE2626FA6BD90021FBC3 /* View */,
@@ -453,6 +464,7 @@
 				3B7AD28F270286FA00A8733F /* FavoritesViewController.swift in Sources */,
 				3B8B44C626FD078300C7E60D /* SettingsViewController.swift in Sources */,
 				3BFACE2E26FA6D2F0021FBC3 /* UIView+ext.swift in Sources */,
+				3B680BEE270492280004396E /* BoringSegmentControl.swift in Sources */,
 				3BD16F1F2700E2CF001586BF /* HalfBoredActivity.swift in Sources */,
 				3BF3B80F26FB7EB3006340DD /* Constants.swift in Sources */,
 				3B67845726FFB330000919AB /* UIColor+ext.swift in Sources */,

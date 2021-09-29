@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+    
     convenience init?(hex: String) {
         if (hex.contains("#")) {
             let newHex = hex.replacingOccurrences(of: "#", with: "")

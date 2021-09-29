@@ -22,7 +22,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     let boredManager: BoredManager = BoredManager()
     var boredModel: BoredActivity?
     
-    var tempPrice: Double? = nil
+    var tempPrice: (Double, Double)? = nil
     var tempType: Types? = nil
     var tempParticipants: Int? = nil
 
@@ -101,7 +101,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     // MARK: - Fetch Data API
     
-    private func fetchData(type: Types?, participants: Int?, price: Double?) {
+    private func fetchData(type: Types?, participants: Int?, price: (Double, Double)?) {
         DispatchQueue.global(qos: .background).async {
             self.boredManager.fetchData(type: type, participants: participants, price: price) { [weak self] (result) in
                 guard let self = self else { return }
@@ -114,6 +114,10 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                     }
                 case .failure(let error):
                     self.presentCustomAlert(title: "Error", message: error.rawValue)
+                    
+                    self.tempType = nil
+                    self.tempPrice = nil
+                    self.tempParticipants = nil
                 }
             }
         }
