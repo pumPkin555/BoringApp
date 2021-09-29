@@ -94,9 +94,6 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     private func configureGestureRecognizer() {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(moveCard))
         self.card.addGestureRecognizer(panGestureRecognizer)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(refreshImageTapped))
-        self.refreshImageView.addGestureRecognizer(tap)
     }
     
     // MARK: - Fetch Data API
@@ -199,11 +196,6 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                 }
             }
         }
-    }
-    
-    @objc private func refreshImageTapped() {
-        print("YYYEEEESSSS")
-        fetchData(type: nil, participants: nil, price: nil)
     }
     
     @objc private func openSafariWithLink(with link: String) {
