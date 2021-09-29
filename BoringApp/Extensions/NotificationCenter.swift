@@ -12,4 +12,5 @@ extension Notification.Name {
     static let participants = Notification.Name("participants")
     static let halfBoredParticipants = Notification.Name("halfBoredParticipants")
     static let link = Notification.Name("link")
+    static let price = Notification.Name("price")
 }

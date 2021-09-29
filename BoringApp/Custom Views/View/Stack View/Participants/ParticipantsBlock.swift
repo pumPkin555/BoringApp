@@ -30,7 +30,7 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
         
         self.axis = .vertical
         self.distribution = .fillProportionally
-        self.spacing = 5
+        self.spacing = 10
         
         configureLabel()
         configureToolBar()
@@ -53,9 +53,9 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
     private func configureTextField() {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = UIColor.clear
-        textField.textAlignment = .center
+        textField.textAlignment = .left
         textField.textColor = UIColor.label
-        textField.font = UIFont(name: "Helvetica", size: 14)
+        textField.font = UIFont(name: "Helvetica", size: 16)
         textField.placeholder = "Type the number of participants in your activity"
         textField.keyboardType = .numberPad
         textField.inputAccessoryView = toolBar

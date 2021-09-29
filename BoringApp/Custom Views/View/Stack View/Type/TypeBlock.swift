@@ -11,7 +11,6 @@ class TypeBlock: UIStackView, UIViewProtocol {
     
     let label: UILabel = UILabel()
     let activityStackView: ActivityStackView = ActivityStackView()
-    let line: UIView = UIView()
     
     let titles: [[String]] = [
         ["education", "recreational", "social"],
@@ -41,6 +40,8 @@ class TypeBlock: UIStackView, UIViewProtocol {
         self.backgroundColor = UIColor.clear
         
         self.axis = .vertical
+        self.distribution = .fillProportionally
+        self.spacing = 10
         
         
         configureLabel()
@@ -61,11 +62,5 @@ class TypeBlock: UIStackView, UIViewProtocol {
     
     private func configureStackView() {
         activityStackView.set(numberOfSubStackViews: 3, numberOfButtons: 3, titles: titles, buttonColors: buttonColors)
-    }
-    
-    private func configureLineView() {
-        line.translatesAutoresizingMaskIntoConstraints = false
-        line.frame.size.height = 2
-        line.backgroundColor = UIColor.black
     }
 }

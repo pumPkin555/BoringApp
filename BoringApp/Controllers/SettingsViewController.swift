@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     
     var type: Types? = nil
     var participants: Int? = nil
-    var price: Double? = nil
+    var price: (Double, Double)? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,13 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     //MARK: - Support functions
     
     private func getPrice() {
-        self.price = self.settingsBlock.priceBlock.switcher.isOn ? nil : 0.0
+        let type = self.settingsBlock.getParice()
+        switch type {
+        case .cheap(let min, let max):
+            self.price = (min, max)
+        case .average(let min, let max):
+            self.price = (min, max)
+        }
     }
     
     //MARK: - Objective-C functions
@@ -107,7 +113,7 @@ extension SettingsViewController {
         NSLayoutConstraint.activate([
             settingsBlock.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             settingsBlock.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            settingsBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+            settingsBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
             settingsBlock.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95)
         ])
         

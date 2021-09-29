@@ -9,14 +9,17 @@ import UIKit
 
 class PriceBlock: UIView, UIViewProtocol {
     
+    let array: [String] = ["free", "cheap", "avarage", "expensive"]
     let label: UILabel = UILabel()
-    let switcher: UISwitch = UISwitch()
+    var segmentControl: UISegmentedControl!
+    
+    var selectedPrice: Price = .cheap(min: 0.0, max: 0.0)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
         configureLabel()
-        configureSwitcher()
+        configureSegmentControl()
     }
     
     override func layoutSubviews() {
@@ -43,27 +46,52 @@ class PriceBlock: UIView, UIViewProtocol {
         label.textColor = UIColor.secondaryLabel
     }
     
-    private func configureSwitcher() {
-        self.addSubview(switcher)
-        switcher.translatesAutoresizingMaskIntoConstraints = false
-        switcher.tintColor = UIColor.systemGreen
-        switcher.backgroundColor = UIColor.clear
-        switcher.isOn = false
+    private func configureSegmentControl() {
+        segmentControl = UISegmentedControl(items: array)
+        self.addSubview(segmentControl)
+        
+        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.backgroundColor = UIColor.secondarySystemBackground
+        segmentControl.tintColor = UIColor.systemGreen
+        
+        segmentControl.addTarget(self, action: #selector(choosePrice), for: .valueChanged)
+    }
+    
+    //MARK: - Objective-C functions
+    
+    @objc private func choosePrice(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.selectedPrice = .cheap(min: 0.0, max: 0.0)
+        case 1:
+            self.selectedPrice = .cheap(min: 0.1, max: 0.2)
+        case 2:
+            self.selectedPrice = .average(min: 0.2, max: 0.6)
+        case 3:
+            self.selectedPrice = .average(min: 0.6, max: 1.0)
+        default:
+            break
+        }
+        
+//        NotificationCenter.default.post(name: .price, object: self.selectedPrice)
     }
     
     //MARK: - Constraints
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([
-            switcher.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            switcher.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+            label.topAnchor.constraint(equalTo: self.topAnchor),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            label.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
+            label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3)
         ])
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: self.topAnchor),
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            label.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            label.trailingAnchor.constraint(equalTo: switcher.leadingAnchor),
+            segmentControl.topAnchor.constraint(equalTo: label.bottomAnchor),
+            segmentControl.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
+            segmentControl.widthAnchor.constraint(equalTo: self.widthAnchor),
+            segmentControl.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
 }
