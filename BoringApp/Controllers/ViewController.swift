@@ -12,7 +12,7 @@ import SafariServices
 class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewControllerDelegate {
 
     var card: CardView = CardView()
-    let refreshImageView: MyImageView = MyImageView(image: UIImage(systemName: SFSymbols.arrowClockwiseCircle.rawValue) ?? UIImage())
+    let refreshImageView: MyImageView = MyImageView(image: SFSymbols.arrowClockwiseCircle!)
     let filterButton: BoringButton = BoringButton()
     let favoritesButton: BoringButton = BoringButton()
     
@@ -80,19 +80,28 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     private func configureFavoritesButton() {
         view.addSubview(favoritesButton)
         
-        favoritesButton.set(image: UIImage(systemName: SFSymbols.star.rawValue) ?? UIImage(), tintColor: UIColor.label, link: nil)
-        favoritesButton.addTarget(self, action: #selector(presentFavoritesViewController), for: .touchUpInside)
+        favoritesButton.set(image: SFSymbols.star!,
+                            tintColor: UIColor.label,
+                            link: nil)
+        favoritesButton.addTarget(self,
+                                  action: #selector(presentFavoritesViewController),
+                                  for: .touchUpInside)
     }
     
     private func configureFilterButton() {
         view.addSubview(filterButton)
         
-        filterButton.set(image: UIImage(systemName: SFSymbols.filer.rawValue) ?? UIImage(), tintColor: UIColor.label, link: nil)
-        filterButton.addTarget(self, action: #selector(presentSettingsViewController), for: .touchUpInside)
+        filterButton.set(image: SFSymbols.filer!,
+                         tintColor: UIColor.label,
+                         link: nil)
+        filterButton.addTarget(self,
+                               action: #selector(presentSettingsViewController),
+                               for: .touchUpInside)
     }
     
     private func configureGestureRecognizer() {
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(moveCard))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self,
+                                                          action: #selector(moveCard))
         self.card.addGestureRecognizer(panGestureRecognizer)
     }
     

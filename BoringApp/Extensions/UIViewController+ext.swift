@@ -22,7 +22,7 @@ extension UIViewController {
     
     func presentCustomAlert(title: String, message: String) {
         DispatchQueue.main.async {
-            let alertController = CDAlertView(title: title, message: message, type: .custom(image: UIImage(systemName: SFSymbols.error.rawValue) ?? UIImage()))
+            let alertController = CDAlertView(title: title, message: message, type: .custom(image: SFSymbols.error!))
             let okButton = CDAlertViewAction(title: "Ok! 😒")
             
             alertController.add(action: okButton)

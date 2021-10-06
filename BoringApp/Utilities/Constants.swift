@@ -5,21 +5,21 @@
 //  Created by Ivanov Viktor on 22.09.2021.
 //
 
-import Foundation
+import UIKit
 
-enum SFSymbols: String {
-    case some = "xmark"
-    case human = "person.circle"
-    case people = "person.2.circle"
-    case question = "questionmark.circle"
-    case bookmark = "bookmark"
-    case bookmarkFill = "bookmark.fill"
-    case arrowClockwiseCircle = "arrow.clockwise.circle"
-    case filer = "slider.horizontal.3"
-    case dollar = "dollarsign.circle"
-    case link = "link.circle.fill"
-    case error = "xmark.circle"
-    case star = "star"
+enum SFSymbols {
+    static let some = UIImage(systemName: "xmark")
+    static let human = UIImage(systemName: "person.circle")
+    static let people = UIImage(systemName: "person.2.circle")
+    static let question = UIImage(systemName: "questionmark.circle")
+    static let bookmark = UIImage(systemName: "bookmark")
+    static let bookmarkFill = UIImage(systemName: "bookmark.fill")
+    static let arrowClockwiseCircle = UIImage(systemName: "arrow.clockwise.circle")
+    static let filer = UIImage(systemName: "slider.horizontal.3")
+    static let dollar = UIImage(systemName: "dollarsign.circle")
+    static let link = UIImage(systemName: "link.circle.fill")
+    static let error = UIImage(systemName: "xmark.circle")
+    static let star = UIImage(systemName: "star")
 }
 
 enum Types: String {

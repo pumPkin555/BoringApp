@@ -90,14 +90,14 @@ class CardView: UIView, UIViewProtocol {
         self.activityType.set(text: model.type)
         
         if (model.participants > 1) {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
+            self.participantView.set(image: SFSymbols.people!,
                                      text: "\(model.participants)")
         } else {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
+            self.participantView.set(image: SFSymbols.human!,
                                      text: "\(model.participants)")
         }
         
-        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
+        self.priceView.set(image: SFSymbols.dollar!,
                            text: "\(model.price)")
         
         configureView()
@@ -107,7 +107,7 @@ class CardView: UIView, UIViewProtocol {
         configurePriceView()
         
         if (model.link != "") {
-            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
+            self.linkButton.set(image: SFSymbols.link!,
                                 tintColor: UIColor.systemBlue,
                                 link: model.link)
             
@@ -126,14 +126,14 @@ class CardView: UIView, UIViewProtocol {
         self.activityType.set(text: model.type ?? "None")
         
         if (model.participants > 1) {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.people.rawValue) ?? UIImage(),
+            self.participantView.set(image: SFSymbols.people!,
                                      text: "\(model.participants)")
         } else {
-            self.participantView.set(image: UIImage(systemName: SFSymbols.human.rawValue) ?? UIImage(),
+            self.participantView.set(image: SFSymbols.human!,
                                      text: "\(model.participants)")
         }
         
-        self.priceView.set(image: UIImage(systemName: SFSymbols.dollar.rawValue) ?? UIImage(),
+        self.priceView.set(image: SFSymbols.dollar!,
                            text: "\(model.price)")
         
         configureView()
@@ -143,7 +143,7 @@ class CardView: UIView, UIViewProtocol {
         configurePriceView()
         
         if (model.link != "") {
-            self.linkButton.set(image: UIImage(systemName: SFSymbols.link.rawValue) ?? UIImage(),
+            self.linkButton.set(image: SFSymbols.link!,
                                 tintColor: UIColor.systemBlue,
                                 link: model.link)
             
