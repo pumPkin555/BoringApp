@@ -20,8 +20,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.backgroundColor = UIColor.systemBackground
-        window?.rootViewController = ViewController()
+        window?.rootViewController = congifureNavigationController()
         window?.makeKeyAndVisible()
+    }
+    
+    private func congifureNavigationController() -> UINavigationController {
+        let viewController = ViewController()
+        return UINavigationController(rootViewController: viewController)
     }
     
     func createTabBar() -> UITabBarController {

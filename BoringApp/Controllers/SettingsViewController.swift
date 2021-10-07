@@ -9,7 +9,6 @@ import UIKit
 
 class SettingsViewController: UIViewController, UIViewControllerProtocol {
     
-    let hand: UIView = UIView()
     let settingsBlock: SettingsViewBlock = SettingsViewBlock()
     let doneButton: UIButton = UIButton()
     
@@ -22,12 +21,17 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        configureHand()
         configureSettingsBlock()
         configureDoneButton()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getType(notification:)), name: .typeName, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(getParticipants(notification:)), name: .participants, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(getType(notification:)),
+                                               name: .typeName,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(getParticipants(notification:)),
+                                               name: .participants,
+                                               object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -39,18 +43,15 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     
     func configureViewController() {
         view.backgroundColor = UIColor.systemBackground
+        
+        title = "Settings"
+        
+        let closeButton = UIBarButtonItem(systemItem: .close)
+        navigationItem.rightBarButtonItem = closeButton
     }
     
     func configureSettingsBlock() {
         view.addSubview(settingsBlock)
-    }
-    
-    func configureHand() {
-        view.addSubview(hand)
-        
-        hand.translatesAutoresizingMaskIntoConstraints = false
-        hand.backgroundColor = UIColor.systemGray3
-        hand.layer.cornerRadius = 3
     }
     
     func configureDoneButton() {
@@ -90,7 +91,9 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     @objc func dismissController() {
         self.getPrice()
         
-        let model = HalfBoredActivity(type: self.type, participants: self.participants, price: self.price)
+        let model = HalfBoredActivity(type: self.type,
+                                      participants: self.participants,
+                                      price: self.price)
         delegate?.set(model: model)
         LonelyManager.shared.deleteAll()
         
@@ -103,12 +106,12 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
 extension SettingsViewController {
     
     func setUpConstraints() {
-        NSLayoutConstraint.activate([
-            hand.heightAnchor.constraint(equalToConstant: 6),
-            hand.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
-            hand.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-            hand.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            hand.heightAnchor.constraint(equalToConstant: 6),
+//            hand.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
+//            hand.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+//            hand.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+//        ])
         
         NSLayoutConstraint.activate([
             settingsBlock.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),

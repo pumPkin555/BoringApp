@@ -71,7 +71,9 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
     //MARK: - Objective-C functions
     
     @objc private func hideKeyboard() {
-        NotificationCenter.default.post(name: .participants, object: Int(self.textField.text ?? "1"))
+        if (Int(self.textField.text ?? "1") ?? 1 < 10) {
+            NotificationCenter.default.post(name: .participants, object: Int(self.textField.text ?? "1"))
+        }
         self.endEditing(true)
     }
 }

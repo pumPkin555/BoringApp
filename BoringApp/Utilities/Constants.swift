@@ -38,3 +38,8 @@ enum Price {
     case cheap(min: Double, max: Double)
     case average(min: Double, max: Double)
 }
+
+enum ViewState {
+    case visible
+    case invisible
+}

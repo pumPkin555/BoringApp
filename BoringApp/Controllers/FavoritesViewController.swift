@@ -24,6 +24,7 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
         super.viewWillAppear(animated)
         savedData = DataBaseManager.shared.savedData ?? []
         tableView.reloadData()
+        animateTableView()
     }
     
     override func viewWillLayoutSubviews() {
@@ -37,9 +38,6 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
         view.backgroundColor = UIColor(named: "Orange_Coral_1")!
         navigationController?.navigationBar.prefersLargeTitles = false
         title = "Favorites"
-        
-        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
-        navigationItem.rightBarButtonItem = backButton
     }
     
     func configureTableView() {
@@ -53,6 +51,28 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
         tableView.dataSource = self
         
         tableView.register(BoringCell.self, forCellReuseIdentifier: BoringCell.reuseID)
+    }
+    
+    // MARK: - Animations
+    
+    private func animateTableView() {
+//        tableView.reloadData()
+        
+        let cells = tableView.visibleCells
+        let tableViewHeight = tableView.bounds.height
+//        let delay: TimeInterval = 1.2
+        
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+            
+            UIView.animate(withDuration: 1.1,
+                           delay: 1.0,
+                           usingSpringWithDamping: 0.8,
+                           initialSpringVelocity: 0,
+                           options: .curveEaseInOut) {
+                cell.transform = CGAffineTransform.identity
+            }
+        }
     }
     
     //MARK: - Open Safari

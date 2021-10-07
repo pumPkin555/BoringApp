@@ -15,6 +15,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     let refreshImageView: MyImageView = MyImageView(image: SFSymbols.arrowClockwiseCircle!)
     let filterButton: BoringButton = BoringButton()
     let favoritesButton: BoringButton = BoringButton()
+    let loader: UIActivityIndicatorView = UIActivityIndicatorView()
+    let stackViewItem = UIStackView()
     
     let gradientLayer: CAGradientLayer = CAGradientLayer()
     let animation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
@@ -31,13 +33,15 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         
         configureViewController()
         configureGradient()
-        configureFavoritesButton()
-        configureFilterButton()
         configureCardView()
         configureRefreshImageView()
         configureGestureRecognizer()
         
-        fetchData(type: self.tempType, participants: self.tempParticipants, price: self.tempPrice)
+        make(.invisible, a: self.card)
+        
+        fetchData(type: self.tempType,
+                  participants: self.tempParticipants,
+                  price: self.tempPrice)
     }
     
     override func viewWillLayoutSubviews() {
@@ -49,13 +53,33 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     func configureViewController() {
         view.backgroundColor = UIColor.clear
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = UIColor.label
+        
+        navigationItem.titleView = configureTopItemStack()
+        
+        let filterButton = UIBarButtonItem(image: SFSymbols.filer!,
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(presentSettingsViewController))
+        let favouritesButton = UIBarButtonItem(image: SFSymbols.star!,
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(presentFavoritesViewController))
+        
+        navigationItem.leftBarButtonItem = favouritesButton
+        navigationItem.rightBarButtonItem = filterButton
     }
     
     private func configureGradient() {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
         gradientLayer.locations = [-0.3, 0.4, 0.65]
-        gradientLayer.colors = [UIColor(named: "MoonLight Asteroid_1")!.cgColor, UIColor(named: "MoonLight Asteroid_2")!.cgColor, UIColor(named: "MoonLight Asteroid_3")!.cgColor]
+        gradientLayer.colors = [UIColor(named: "MoonLight Asteroid_1")!.cgColor,
+                                UIColor(named: "MoonLight Asteroid_2")!.cgColor,
+                                UIColor(named: "MoonLight Asteroid_3")!.cgColor]
         
         view.layer.insertSublayer(gradientLayer, at: 0)
         
@@ -77,37 +101,37 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         view.addSubview(refreshImageView)
     }
     
-    private func configureFavoritesButton() {
-        view.addSubview(favoritesButton)
-        
-        favoritesButton.set(image: SFSymbols.star!,
-                            tintColor: UIColor.label,
-                            link: nil)
-        favoritesButton.addTarget(self,
-                                  action: #selector(presentFavoritesViewController),
-                                  for: .touchUpInside)
-    }
-    
-    private func configureFilterButton() {
-        view.addSubview(filterButton)
-        
-        filterButton.set(image: SFSymbols.filer!,
-                         tintColor: UIColor.label,
-                         link: nil)
-        filterButton.addTarget(self,
-                               action: #selector(presentSettingsViewController),
-                               for: .touchUpInside)
-    }
-    
     private func configureGestureRecognizer() {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self,
                                                           action: #selector(moveCard))
         self.card.addGestureRecognizer(panGestureRecognizer)
     }
     
+    private func configureTopItemStack() -> UIView {
+        
+        stackViewItem.axis = .horizontal
+        stackViewItem.spacing = 2
+        stackViewItem.distribution = .fillProportionally
+        
+        let loadingLabel: UILabel = UILabel()
+        loadingLabel.text = "Loading…"
+        loadingLabel.tintColor = UIColor.label
+        loadingLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        
+        loader.startAnimating()
+        
+        stackViewItem.addArrangedSubview(loader)
+        stackViewItem.addArrangedSubview(loadingLabel)
+        
+        return stackViewItem
+    }
+    
     // MARK: - Fetch Data API
     
     private func fetchData(type: Types?, participants: Int?, price: (Double, Double)?) {
+        
+        self.make(.visible, a: self.stackViewItem)
+        
         DispatchQueue.global(qos: .background).async {
             self.boredManager.fetchData(type: type, participants: participants, price: price) { [weak self] (result) in
                 guard let self = self else { return }
@@ -117,6 +141,9 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                     DispatchQueue.main.async {
                         self.boredModel = activity
                         self.card.set(with: activity)
+
+                        self.make(.visible, a: self.card)
+                        self.make(.invisible, a: self.stackViewItem)
                     }
                 case .failure(let error):
                     self.presentCustomAlert(title: "Error", message: error.rawValue)
@@ -124,12 +151,28 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                     self.tempType = nil
                     self.tempPrice = nil
                     self.tempParticipants = nil
+                    
+                    self.make(.visible, a: self.card)
+                    self.make(.invisible, a: self.stackViewItem)
                 }
             }
         }
     }
     
     //MARK: - Support functions
+    
+    private func make(_ state: ViewState, a view: UIView) {
+        switch state {
+        case .visible:
+            UIView.animate(withDuration: 1.0) {
+                view.isHidden = false
+            }
+        case .invisible:
+            UIView.animate(withDuration: 1.0) {
+                view.isHidden = true
+            }
+        }
+    }
     
     private func rotate(_ view: UIView, tag: Int) {
         let diff = self.view.center.x - self.card.center.x
@@ -145,7 +188,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     private func saveToDB(with model: BoredActivity?) {
         guard let newModel = model else {
-            self.presentCustomAlert(title: "Error", message: "Can't save this… 😞")
+            self.presentCustomAlert(title: "Error",
+                                    message: "Can't save this… 😞")
             return
         }
         DataBaseManager.shared.saveActivity(with: newModel)
@@ -165,7 +209,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
             let newX = card.center.x + translation.x
             let newY = card.center.y
             
-            self.card.center = CGPoint(x: newX, y: newY)
+            self.card.center = CGPoint(x: newX,
+                                       y: newY)
             recognizer.setTranslation(.zero, in: self.view)
             
         } else if (recognizer.state == .ended) {
@@ -173,22 +218,23 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
             if (self.card.center.x > self.view.frame.width - 20) {
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x += self.view.frame.width
-                } completion: { (done) in
+                } completion: { _ in
                     self.fetchData(type: self.tempType,
                                    participants: self.tempParticipants,
                                    price: self.tempPrice)
-                    self.card.alpha = 0
+
+                    self.make(.invisible, a: self.card)
                 }
             } else if (self.card.center.x < 20) {
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x -= self.view.frame.width
-                } completion: { (done) in
+                } completion: { _ in
                     self.saveToDB(with: self.boredModel)
                     self.fetchData(type: self.tempType,
                                    participants: self.tempParticipants,
                                    price: self.tempPrice)
-                    self.card.alpha = 0
-                    
+
+                    self.make(.invisible, a: self.card)
                 }
             }
             
@@ -199,10 +245,6 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                 
                 self.card.transform = .identity
                 self.refreshImageView.transform = .identity
-            } completion: { (_) in
-                UIView.animate(withDuration: 0.1, delay: 0.3) {
-                    self.card.alpha = 1
-                }
             }
         }
     }
@@ -218,16 +260,15 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     @objc private func presentFavoritesViewController() {
         let favoritesVC = FavoritesViewController()
-        let navController = UINavigationController(rootViewController: favoritesVC)
-        
-        self.present(navController, animated: true, completion: nil)
+
+        self.navigationController?.pushViewController(favoritesVC, animated: true)
     }
     
     @objc private func presentSettingsViewController() {
         let settingsVC = SettingsViewController()
         settingsVC.delegate = self
         
-        self.present(settingsVC, animated: true, completion: nil)
+        present(settingsVC, animated: true, completion: nil)
     }
 }
 
@@ -250,20 +291,6 @@ extension ViewController {
             refreshImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07),
             refreshImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07),
             refreshImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
-            favoritesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-            favoritesButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            favoritesButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            favoritesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
-        ])
-        
-        NSLayoutConstraint.activate([
-            filterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-            filterButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            filterButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)
         ])
     }
 }
