@@ -9,24 +9,9 @@ import Foundation
 
 class BoredManager {
     
-    func fetchData(type: Types?, participants: Int?, price: (Double, Double)?, completion: @escaping (Result<BoredActivity, BAError>) -> Void) {
+    func fetchData(with filter: HalfBoredActivity?, completion: @escaping (Result<BoredActivity, BAError>) -> Void) {
         
-        var participantsString = ""
-        var priceStirng = ""
-        var typeString = ""
-        
-        
-        if (participants != nil) {
-            participantsString = "participants=\(participants!)"
-        }
-        if (price != nil) {
-            priceStirng = "&minprice=\(price!.0)&maxprice=\(price!.1)"
-        }
-        if (type != nil) {
-            typeString = "&type=\(type!.rawValue)"
-        }
-        
-        let urlString: String = "https://www.boredapi.com/api/activity?\(participantsString)\(priceStirng)\(typeString)"
+        let urlString: String = configureURLString(with: filter)
         
         guard let url = URL(string: urlString) else { return }
         
@@ -56,5 +41,28 @@ class BoredManager {
             }
         }
         dataTask.resume()
+    }
+    
+    private func configureURLString(with filter: HalfBoredActivity?) -> String {
+        
+        var participantsString = ""
+        var priceStirng = ""
+        var typeString = ""
+        
+        if let participants = filter?.participants {
+            participantsString = "participants=\(participants)"
+        }
+        if let price = filter?.price {
+            priceStirng = "&minprice=\(price.0)&maxprice=\(price.1)"
+        }
+        if let types = filter?.type, types != [] { // change from TYPE to TYPES
+            for type in types {
+                typeString += "&type=\(type.rawValue)"
+            }
+        }
+        
+        let urlString: String = "https://www.boredapi.com/api/activity?\(participantsString)\(priceStirng)\(typeString)"
+        
+        return urlString
     }
 }

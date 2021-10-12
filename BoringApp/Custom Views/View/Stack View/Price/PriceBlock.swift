@@ -74,7 +74,7 @@ class PriceBlock: UIView, UIViewProtocol {
             break
         }
         
-//        NotificationCenter.default.post(name: .price, object: self.selectedPrice)
+        NotificationCenter.default.post(name: .price, object: self.selectedPrice)
     }
     
     //MARK: - Constraints

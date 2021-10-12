@@ -24,9 +24,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     let boredManager: BoredManager = BoredManager()
     var boredModel: BoredActivity?
     
-    var tempPrice: (Double, Double)? = nil
-    var tempType: Types? = nil
-    var tempParticipants: Int? = nil
+    var tempFilter: HalfBoredActivity? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +37,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         
         make(.invisible, a: self.card)
         
-        fetchData(type: self.tempType,
-                  participants: self.tempParticipants,
-                  price: self.tempPrice)
+        fetchData(with: self.tempFilter)
     }
     
     override func viewWillLayoutSubviews() {
@@ -128,12 +124,12 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     // MARK: - Fetch Data API
     
-    private func fetchData(type: Types?, participants: Int?, price: (Double, Double)?) {
+    private func fetchData(with filter: HalfBoredActivity?) {
         
         self.make(.visible, a: self.stackViewItem)
         
         DispatchQueue.global(qos: .background).async {
-            self.boredManager.fetchData(type: type, participants: participants, price: price) { [weak self] (result) in
+            self.boredManager.fetchData(with: filter) { [weak self] (result) in
                 guard let self = self else { return }
                 
                 switch result {
@@ -146,14 +142,14 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                         self.make(.invisible, a: self.stackViewItem)
                     }
                 case .failure(let error):
-                    self.presentCustomAlert(title: "Error", message: error.rawValue)
-                    
-                    self.tempType = nil
-                    self.tempPrice = nil
-                    self.tempParticipants = nil
-                    
-                    self.make(.visible, a: self.card)
-                    self.make(.invisible, a: self.stackViewItem)
+                    DispatchQueue.main.async {
+                        self.presentCustomAlert(title: "Error", message: error.rawValue)
+                        
+                        self.tempFilter = nil
+                        
+                        self.make(.visible, a: self.card)
+                        self.make(.invisible, a: self.stackViewItem)
+                    }
                 }
             }
         }
@@ -219,9 +215,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x += self.view.frame.width
                 } completion: { _ in
-                    self.fetchData(type: self.tempType,
-                                   participants: self.tempParticipants,
-                                   price: self.tempPrice)
+                    self.fetchData(with: self.tempFilter)
 
                     self.make(.invisible, a: self.card)
                 }
@@ -230,9 +224,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                     self.card.center.x -= self.view.frame.width
                 } completion: { _ in
                     self.saveToDB(with: self.boredModel)
-                    self.fetchData(type: self.tempType,
-                                   participants: self.tempParticipants,
-                                   price: self.tempPrice)
+                    self.fetchData(with: self.tempFilter)
 
                     self.make(.invisible, a: self.card)
                 }
@@ -307,12 +299,7 @@ extension ViewController: BoringButtonDelegate {
 
 extension ViewController: SettingsDelegate {
     func set(model: HalfBoredActivity) {
-        self.tempParticipants = model.participants
-        self.tempType = model.type
-        self.tempPrice = model.price
-        
-        fetchData(type: self.tempType,
-                  participants: self.tempParticipants,
-                  price: self.tempPrice)
+        self.tempFilter = model
+        self.fetchData(with: self.tempFilter)
     }
 }

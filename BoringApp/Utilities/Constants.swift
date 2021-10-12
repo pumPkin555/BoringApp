@@ -22,7 +22,7 @@ enum SFSymbols {
     static let star = UIImage(systemName: "star")
 }
 
-enum Types: String {
+enum Types: String, CaseIterable {
     case education = "education"
     case recreational = "recreational"
     case social = "social"

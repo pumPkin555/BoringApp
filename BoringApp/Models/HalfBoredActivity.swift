@@ -7,12 +7,12 @@
 
 import Foundation
 
-class HalfBoredActivity {
-    let type: Types?
+struct HalfBoredActivity {
+    let type: [Types]
     let participants: Int?
     let price: (Double, Double)?
     
-    init(type: Types?, participants: Int?, price: (Double, Double)?) {
+    init(type: [Types], participants: Int?, price: (Double, Double)?) {
         self.type = type
         self.participants = participants
         self.price = price

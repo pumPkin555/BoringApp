@@ -25,3 +25,13 @@ protocol BoringButtonDelegate {
 protocol SettingsDelegate {
     func set(model: HalfBoredActivity)
 }
+
+protocol BModel {
+    var activity: String? { get }
+    var accessibility: Double { get }
+    var type: String? { get }
+    var participants: Int64 { get }
+    var price: Double { get }
+    var link: String? { get }
+    var key: String? { get }
+}

@@ -7,12 +7,12 @@
 
 import Foundation
 
-class BoredActivity: Decodable {
-    var activity: String
+struct BoredActivity: Decodable, BModel {
+    var activity: String?
     var accessibility: Double
-    var type: String
-    var participants: Int
+    var type: String?
+    var participants: Int64
     var price: Double
-    var link: String
-    var key: String
+    var link: String?
+    var key: String?
 }

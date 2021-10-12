@@ -9,7 +9,8 @@ import UIKit
 
 class SettingsViewBlock: UIView, UIViewProtocol {
     
-    let typeBlock: TypeBlock = TypeBlock()
+//    let typeBlock: TypeBlock = TypeBlock()
+//    let typeBlock: CollectionTypeBlock = CollectionTypeBlock()
     let participantsBlock: ParticipantsBlock = ParticipantsBlock()
     let priceBlock: PriceBlock = PriceBlock()
 
@@ -33,7 +34,8 @@ class SettingsViewBlock: UIView, UIViewProtocol {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
         
-        self.addSubview(typeBlock)
+//        self.addSubview(typeBlock)
+//        typeBlock.configure()
         self.addSubview(participantsBlock)
         self.addSubview(priceBlock)
         
@@ -51,20 +53,20 @@ class SettingsViewBlock: UIView, UIViewProtocol {
 //        self.setCustomSpacing(self.frame.height / 3, after: priceBlock)
     }
     
-    func getParice() -> Price {
-        return priceBlock.selectedPrice
-    }
+//    func getParice() -> Price {
+//        return priceBlock.selectedPrice
+//    }
     
     func setUpConstraints() {
-        NSLayoutConstraint.activate([
-            typeBlock.topAnchor.constraint(equalTo: self.topAnchor),
-            typeBlock.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
-            typeBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.98),
-            typeBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            typeBlock.topAnchor.constraint(equalTo: self.topAnchor),
+//            typeBlock.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
+//            typeBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.98),
+//            typeBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+//        ])
         
         NSLayoutConstraint.activate([
-            participantsBlock.topAnchor.constraint(equalTo: typeBlock.bottomAnchor),
+            participantsBlock.topAnchor.constraint(equalTo: self.topAnchor),
             participantsBlock.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
             participantsBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.98),
             participantsBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor)

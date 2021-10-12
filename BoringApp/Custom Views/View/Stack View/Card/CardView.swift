@@ -82,12 +82,12 @@ class CardView: UIView, UIViewProtocol {
         linkButton.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
     }
     
-    //MARK: - Configure card with model (API)
+    //MARK: - Configure card with model (API & CoreData)
     
-    func set(with model: BoredActivity) {
+    func set(with model: BModel) {
         
-        self.activityLabel.set(text: model.activity)
-        self.activityType.set(text: model.type)
+        self.activityLabel.set(text: model.activity ?? "")
+        self.activityType.set(text: model.type ?? "")
         
         if (model.participants > 1) {
             self.participantView.set(image: SFSymbols.people!,
@@ -115,41 +115,6 @@ class CardView: UIView, UIViewProtocol {
         } else {
             self.linkButton.hide()
             configureLinkButton()
-        }
-    }
-    
-    //MARK: - Configure card with model (DataBase)
-    
-    func set2(with model: SavedBoredActivity) {
-        
-        self.activityLabel.set(text: model.activity ?? "None")
-        self.activityType.set(text: model.type ?? "None")
-        
-        if (model.participants > 1) {
-            self.participantView.set(image: SFSymbols.people!,
-                                     text: "\(model.participants)")
-        } else {
-            self.participantView.set(image: SFSymbols.human!,
-                                     text: "\(model.participants)")
-        }
-        
-        self.priceView.set(image: SFSymbols.dollar!,
-                           text: "\(model.price)")
-        
-        configureView()
-        configureActivityTypeLabel()
-        configureActivityLabel()
-        configureParticipantView()
-        configurePriceView()
-        
-        if (model.link != "") {
-            self.linkButton.set(image: SFSymbols.link!,
-                                tintColor: UIColor.systemBlue,
-                                link: model.link)
-            
-            configureLinkButton()
-        } else {
-            self.linkButton.hide()
         }
     }
     
@@ -164,6 +129,7 @@ class CardView: UIView, UIViewProtocol {
     //MARK: - Constraints
     
     func setUpConstraints() {
+        
         let viewsArray: [UIView] = [participantView, priceView]
         
         NSLayoutConstraint.activate([

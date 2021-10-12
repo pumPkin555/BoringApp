@@ -28,19 +28,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = ViewController()
         return UINavigationController(rootViewController: viewController)
     }
-    
-    func createTabBar() -> UITabBarController {
-        let firstVC = ViewController()
-        let secondVC = FavoritesViewController()
-        
-        firstVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        secondVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        
-        let tabbar = UITabBarController()
-        tabbar.viewControllers = [firstVC, secondVC]
-        
-        return tabbar
-    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

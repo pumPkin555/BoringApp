@@ -39,7 +39,7 @@ class BoringCell: UITableViewCell, UIViewProtocol {
     //MARK: - Set card with model
     
     func set(with model: SavedBoredActivity) {
-        self.card.set2(with: model)
+        self.card.set(with: model)
         
         configureView()
     }
