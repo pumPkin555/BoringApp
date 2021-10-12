@@ -9,8 +9,6 @@ import UIKit
 
 class SettingsViewBlock: UIView, UIViewProtocol {
     
-//    let typeBlock: TypeBlock = TypeBlock()
-//    let typeBlock: CollectionTypeBlock = CollectionTypeBlock()
     let participantsBlock: ParticipantsBlock = ParticipantsBlock()
     let priceBlock: PriceBlock = PriceBlock()
 
@@ -34,36 +32,11 @@ class SettingsViewBlock: UIView, UIViewProtocol {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
         
-//        self.addSubview(typeBlock)
-//        typeBlock.configure()
         self.addSubview(participantsBlock)
         self.addSubview(priceBlock)
-        
-//        self.axis = .vertical
-//        self.distribution = .fillEqually
-        
-//        let views: [UIView] = [typeBlock, participantsBlock, priceBlock]
-//
-//        for view in views {
-//            self.addArrangedSubview(view)
-//        }
-//
-//        self.setCustomSpacing(10, after: typeBlock)
-//        self.setCustomSpacing(10, after: participantsBlock)
-//        self.setCustomSpacing(self.frame.height / 3, after: priceBlock)
     }
     
-//    func getParice() -> Price {
-//        return priceBlock.selectedPrice
-//    }
-    
     func setUpConstraints() {
-//        NSLayoutConstraint.activate([
-//            typeBlock.topAnchor.constraint(equalTo: self.topAnchor),
-//            typeBlock.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
-//            typeBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.98),
-//            typeBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-//        ])
         
         NSLayoutConstraint.activate([
             participantsBlock.topAnchor.constraint(equalTo: self.topAnchor),

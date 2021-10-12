@@ -37,6 +37,11 @@ class MyImageView: UIImageView, UIViewProtocol {
     
     func set(image: UIImage) {
         self.image = image
-        configureView()
+    }
+    
+    //MARK: - Support function
+    
+    func hide(_ flag: Bool) {
+        self.isHidden = flag
     }
 }

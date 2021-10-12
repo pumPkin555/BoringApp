@@ -10,8 +10,12 @@ import SafariServices
 
 class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSafariViewControllerDelegate {
     
+    //MARK: - Properties
+    
     let tableView: UITableView = UITableView()
     var savedData: [SavedBoredActivity] = []
+    
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +26,10 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        savedData = DataBaseManager.shared.savedData ?? []
-        tableView.reloadData()
-        animateTableView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.savedData = DataBaseManager.shared.savedData ?? []
+            self.animateTableView()
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -35,7 +40,7 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
     //MARK: - Configure User Interface
     
     func configureViewController() {
-        view.backgroundColor = UIColor(named: "Orange_Coral_1")!
+        view.backgroundColor = UIColor(named: "SmoothGreen_2")
         navigationController?.navigationBar.prefersLargeTitles = false
         title = "Favorites"
     }
@@ -56,22 +61,23 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
     // MARK: - Animations
     
     private func animateTableView() {
-//        tableView.reloadData()
+        tableView.reloadData()
         
         let cells = tableView.visibleCells
-        let tableViewHeight = tableView.bounds.height
-//        let delay: TimeInterval = 1.2
+        let tableViewWidth = tableView.bounds.width
+        var delay: Double = 0
         
         for cell in cells {
-            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+            cell.transform = CGAffineTransform(translationX: tableViewWidth, y: 0)
             
             UIView.animate(withDuration: 1.1,
-                           delay: 1.0,
+                           delay: delay * 0.05,
                            usingSpringWithDamping: 0.8,
                            initialSpringVelocity: 0,
                            options: .curveEaseInOut) {
                 cell.transform = CGAffineTransform.identity
             }
+            delay += 1
         }
     }
     
@@ -84,12 +90,6 @@ class FavoritesViewController: UIViewController, UIViewControllerProtocol, SFSaf
             
             present(safariVC, animated: true, completion: nil)
         }
-    }
-    
-    //MARK: - Dismiss this controller
-    
-    @objc private func dismissVC() {
-        self.dismiss(animated: true, completion: nil)
     }
 }
 

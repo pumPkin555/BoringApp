@@ -52,8 +52,9 @@ class PriceBlock: UIView, UIViewProtocol {
         
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.selectedSegmentIndex = 0
-        segmentControl.backgroundColor = UIColor.secondarySystemBackground
-        segmentControl.tintColor = UIColor.systemGreen
+//        segmentControl.backgroundColor = UIColor.secondarySystemBackground
+        segmentControl.backgroundColor = UIColor.clear
+        segmentControl.tintColor = UIColor.black
         
         segmentControl.addTarget(self, action: #selector(choosePrice), for: .valueChanged)
     }

@@ -62,8 +62,8 @@ class ParticipantsBlock: UIStackView, UIViewProtocol {
     }
     
     private func configureToolBar() {
-        let hideButton = UIBarButtonItem(title: "Hide", style: .plain, target: self, action: #selector(hideKeyboard))
-        toolBar.items = [hideButton]
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(hideKeyboard))
+        toolBar.items = [doneButton]
         toolBar.sizeToFit()
         toolBar.backgroundColor = UIColor.systemBackground
     }

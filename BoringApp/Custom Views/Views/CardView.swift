@@ -14,6 +14,7 @@ class CardView: UIView, UIViewProtocol {
     let participantView: BoringStackView = BoringStackView()
     let priceView: BoringStackView = BoringStackView()
     let linkButton: BoringButton = BoringButton()
+    let linkImageView: MyImageView = MyImageView(image: SFSymbols.info!)
     
     var delegate: BoringButtonDelegate?
 
@@ -22,6 +23,7 @@ class CardView: UIView, UIViewProtocol {
         
         configureView()
         configureActivityTypeLabel()
+        configureLinkImageView()
         configureActivityLabel()
         configureParticipantView()
         configurePriceView()
@@ -44,24 +46,29 @@ class CardView: UIView, UIViewProtocol {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.clipsToBounds = true
         
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor(named: "Card_Background")
         self.layer.borderWidth = 3
         self.layer.borderColor = UIColor.secondaryLabel.cgColor
         
-        configureBlurEffect()
+//        configureBlurEffect()
     }
     
+    /* Unused
     private func configureBlurEffect() {
-        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterial)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.translatesAutoresizingMaskIntoConstraints = false
         blurView.frame = self.bounds
         self.insertSubview(blurView, at: 0)
     }
-    
+    */
     
     private func configureActivityTypeLabel() {
         self.addSubview(activityType)
+    }
+    
+    private func configureLinkImageView() {
+        self.addSubview(linkImageView)
     }
     
     private func configureActivityLabel() {
@@ -100,21 +107,20 @@ class CardView: UIView, UIViewProtocol {
         self.priceView.set(image: SFSymbols.dollar!,
                            text: "\(model.price)")
         
-        configureView()
-        configureActivityTypeLabel()
-        configureActivityLabel()
-        configureParticipantView()
-        configurePriceView()
-        
         if (model.link != "") {
-            self.linkButton.set(image: SFSymbols.link!,
-                                tintColor: UIColor.systemBlue,
-                                link: model.link)
-            
-            configureLinkButton()
+            if (model is BoredActivity) {
+                self.linkButton.set(image: SFSymbols.link!,
+                                    tintColor: UIColor.systemBlue,
+                                    link: model.link)
+                self.linkButton.hide(false)
+                self.linkImageView.hide(true)
+            } else {
+                self.linkButton.hide(true)
+                self.linkImageView.hide(false)
+            }
         } else {
-            self.linkButton.hide()
-            configureLinkButton()
+            self.linkButton.hide(true)
+            self.linkImageView.hide(true)
         }
     }
     
@@ -137,6 +143,13 @@ class CardView: UIView, UIViewProtocol {
             activityType.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             activityType.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.32),
             activityType.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.07)
+        ])
+        
+        NSLayoutConstraint.activate([
+            linkImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 7),
+            linkImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -7),
+            linkImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.05),
+            linkImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.05)
         ])
         
         for view in viewsArray {

@@ -125,66 +125,30 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		3B8B44CC26FD0CCD00C7E60D /* Stack View */ = {
-			isa = PBXGroup;
-			children = (
-				3BD16F0A2700799F001586BF /* BoringStackView.swift */,
-				3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */,
-				3BBF81192703C06C008B93D1 /* Card */,
-				3B921FFA26FD234A006F2F3C /* Price */,
-				3B921FF326FD1DC1006F2F3C /* Participants */,
-				3B921FF126FD1DBA006F2F3C /* Type */,
-			);
-			path = "Stack View";
-			sourceTree = "<group>";
-		};
-		3B921FF126FD1DBA006F2F3C /* Type */ = {
-			isa = PBXGroup;
-			children = (
-				3B455DC52713821B00D7FEE7 /* CollectionTypeBlock.swift */,
-			);
-			path = Type;
-			sourceTree = "<group>";
-		};
-		3B921FF326FD1DC1006F2F3C /* Participants */ = {
+		3B9B684C2715AE6200457D34 /* StackViewa */ = {
 			isa = PBXGroup;
 			children = (
 				3B921FF426FD1DD4006F2F3C /* ParticipantsBlock.swift */,
+				3BD16F0A2700799F001586BF /* BoringStackView.swift */,
 			);
-			path = Participants;
+			path = StackViewa;
 			sourceTree = "<group>";
 		};
-		3B921FFA26FD234A006F2F3C /* Price */ = {
+		3B9B68502715AEB100457D34 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
-				3B921FFB26FD2359006F2F3C /* PriceBlock.swift */,
+				3BF3B80526FB40F2006340DD /* ActivityLabel.swift */,
+				3BFACE3126FA6F760021FBC3 /* ActivityType.swift */,
 			);
-			path = Price;
+			path = Labels;
 			sourceTree = "<group>";
 		};
-		3BBF81192703C06C008B93D1 /* Card */ = {
-			isa = PBXGroup;
-			children = (
-				3BFACE2026FA67020021FBC3 /* CardView.swift */,
-			);
-			path = Card;
-			sourceTree = "<group>";
-		};
-		3BBF811A2703C0B3008B93D1 /* ImageView */ = {
+		3B9B68512715AEC400457D34 /* ImageViews */ = {
 			isa = PBXGroup;
 			children = (
 				3BF3B82C26FBC45B006340DD /* MyImageView.swift */,
 			);
-			path = ImageView;
-			sourceTree = "<group>";
-		};
-		3BBF811B2703C0CB008B93D1 /* Label */ = {
-			isa = PBXGroup;
-			children = (
-				3BFACE3126FA6F760021FBC3 /* ActivityType.swift */,
-				3BF3B80526FB40F2006340DD /* ActivityLabel.swift */,
-			);
-			path = Label;
+			path = ImageViews;
 			sourceTree = "<group>";
 		};
 		3BF3B82526FBC29E006340DD /* Protocols */ = {
@@ -282,21 +246,25 @@
 		3BFACE1F26FA66F10021FBC3 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B9B68512715AEC400457D34 /* ImageViews */,
+				3B9B68502715AEB100457D34 /* Labels */,
+				3B9B684C2715AE6200457D34 /* StackViewa */,
 				3B7AD28A2702853500A8733F /* Cells */,
 				3BFACE2726FA6BEF0021FBC3 /* Buttons */,
-				3BFACE2626FA6BD90021FBC3 /* View */,
+				3BFACE2626FA6BD90021FBC3 /* Views */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
-		3BFACE2626FA6BD90021FBC3 /* View */ = {
+		3BFACE2626FA6BD90021FBC3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3BBF811B2703C0CB008B93D1 /* Label */,
-				3BBF811A2703C0B3008B93D1 /* ImageView */,
-				3B8B44CC26FD0CCD00C7E60D /* Stack View */,
+				3B921FFF26FD33C8006F2F3C /* SettingsViewBlock.swift */,
+				3BFACE2026FA67020021FBC3 /* CardView.swift */,
+				3B921FFB26FD2359006F2F3C /* PriceBlock.swift */,
+				3B455DC52713821B00D7FEE7 /* CollectionTypeBlock.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3BFACE2726FA6BEF0021FBC3 /* Buttons */ = {

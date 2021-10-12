@@ -20,6 +20,7 @@ enum SFSymbols {
     static let link = UIImage(systemName: "link.circle.fill")
     static let error = UIImage(systemName: "xmark.circle")
     static let star = UIImage(systemName: "star")
+    static let info = UIImage(systemName: "info.circle")
 }
 
 enum Types: String, CaseIterable {

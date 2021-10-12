@@ -24,8 +24,8 @@ class BoringButton: UIButton {
         configureBookMark(with: image, tintColor: tintColor)
     }
     
-    func hide() {
-        self.isHidden = true
+    func hide(_ flag: Bool) {
+        self.isHidden = flag
     }
     
     func getLink() -> String? {

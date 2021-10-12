@@ -40,8 +40,6 @@ class BoringCell: UITableViewCell, UIViewProtocol {
     
     func set(with model: SavedBoredActivity) {
         self.card.set(with: model)
-        
-        configureView()
     }
     
     //MARK: - Constraints

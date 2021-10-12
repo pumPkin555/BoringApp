@@ -11,26 +11,28 @@ import SafariServices
 
 class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewControllerDelegate {
 
+    //MARK: - Properties
+    
     var card: CardView = CardView()
     let refreshImageView: MyImageView = MyImageView(image: SFSymbols.arrowClockwiseCircle!)
-    let filterButton: BoringButton = BoringButton()
-    let favoritesButton: BoringButton = BoringButton()
     let loader: UIActivityIndicatorView = UIActivityIndicatorView()
     let stackViewItem = UIStackView()
     
-    let gradientLayer: CAGradientLayer = CAGradientLayer()
-    let animation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
+//    let gradientLayer: CAGradientLayer = CAGradientLayer()
+//    let animation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
     
     let boredManager: BoredManager = BoredManager()
     var boredModel: BoredActivity?
     
     var tempFilter: HalfBoredActivity? = nil
+    
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViewController()
-        configureGradient()
+//        configureGradient()
         configureCardView()
         configureRefreshImageView()
         configureGestureRecognizer()
@@ -48,7 +50,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     //MARK: - Configure User Interface
     
     func configureViewController() {
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor(named: "SmoothGreen_2")
+        
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -69,6 +72,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         navigationItem.rightBarButtonItem = filterButton
     }
     
+    /* Unused
     private func configureGradient() {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
@@ -87,6 +91,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         
         gradientLayer.add(animation, forKey: nil)
     }
+    */
     
     private func configureCardView() {
         view.addSubview(card)
@@ -191,7 +196,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         DataBaseManager.shared.saveActivity(with: newModel)
     }
     
-    //MARK: - Objective-C functions
+    //MARK: - Objective-C support functions
     
     @objc private func moveCard(recognizer: UIPanGestureRecognizer) {
         
@@ -212,24 +217,21 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         } else if (recognizer.state == .ended) {
             
             if (self.card.center.x > self.view.frame.width - 20) {
+                self.fetchData(with: self.tempFilter)
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x += self.view.frame.width
                 } completion: { _ in
-                    self.fetchData(with: self.tempFilter)
-
                     self.make(.invisible, a: self.card)
                 }
             } else if (self.card.center.x < 20) {
+                self.saveToDB(with: self.boredModel)
+                self.fetchData(with: self.tempFilter)
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x -= self.view.frame.width
                 } completion: { _ in
-                    self.saveToDB(with: self.boredModel)
-                    self.fetchData(with: self.tempFilter)
-
                     self.make(.invisible, a: self.card)
                 }
             }
-            
             
             UIView.animate(withDuration: 0.2, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: []) {
                 self.card.center = CGPoint(x: self.view.center.x,
@@ -241,7 +243,9 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         }
     }
     
-    @objc private func openSafariWithLink(with link: String) {
+    //MARK: - Present controllers
+    
+    private func openSafariWithLink(with link: String) {
         if let url = URL(string: link) {
             let safariVC = SFSafariViewController(url: url)
             safariVC.delegate = self
@@ -259,8 +263,9 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     @objc private func presentSettingsViewController() {
         let settingsVC = SettingsViewController()
         settingsVC.delegate = self
+        let navigationSettingsVC = UINavigationController(rootViewController: settingsVC)
         
-        present(settingsVC, animated: true, completion: nil)
+        present(navigationSettingsVC, animated: true, completion: nil)
     }
 }
 
@@ -269,7 +274,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
 extension ViewController {
     func setUpConstraints() {
         
-        gradientLayer.frame = view.bounds
+//        gradientLayer.frame = view.bounds
         
         NSLayoutConstraint.activate([
             card.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),

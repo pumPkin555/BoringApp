@@ -8,6 +8,18 @@
 import UIKit
 
 class ActivityType: UILabel, UIViewProtocol {
+    
+    private let typeDictionary: [String : UIColor] = [
+        "education"    : UIColor.systemBlue,
+        "recreational" : UIColor.systemGreen,
+        "social"       : UIColor.systemOrange,
+        "diy"          : UIColor.systemTeal,
+        "charity"      : UIColor.systemRed,
+        "cooking"      : UIColor.systemYellow,
+        "relaxation"   : UIColor.systemPurple,
+        "music"        : UIColor.systemPink,
+        "busywork"     : UIColor.systemGray2
+    ]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,25 +49,7 @@ class ActivityType: UILabel, UIViewProtocol {
     
     func set(text: String) {
         self.text = text
-        if (text == "education") {
-            self.backgroundColor = UIColor.systemBlue
-        } else if (text == "recreational") {
-            self.backgroundColor = UIColor.systemGreen
-        } else if (text == "social") {
-            self.backgroundColor = UIColor.systemOrange
-        } else if (text == "diy") {
-            self.backgroundColor = UIColor.white
-        } else if (text == "charity") {
-            self.backgroundColor = UIColor.systemRed
-        } else if (text == "cooking") {
-            self.backgroundColor = UIColor.systemYellow
-        } else if (text == "relaxation") {
-            self.backgroundColor = UIColor.systemGreen
-        } else if (text == "music") {
-            self.backgroundColor = UIColor.systemPink
-        } else if (text == "busywork") {
-            self.backgroundColor = UIColor.systemGray2
-        }
+        self.backgroundColor = typeDictionary[text]
     }
 }
 

@@ -17,9 +17,7 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     let discardButton: UIButton = UIButton()
     let doneButton: UIButton = UIButton()
     
-    let color = [UIColor.yellow, UIColor.orange, UIColor.systemTeal,
-                 UIColor.systemBlue, UIColor.systemPink, UIColor.systemGray2,
-                 UIColor.systemGray, UIColor.tertiarySystemFill, UIColor.systemGreen]
+    let color = [UIColor.yellow, UIColor.orange, UIColor.systemTeal, UIColor.systemBlue, UIColor.systemPink, UIColor.systemGray2, UIColor.systemGray, UIColor.tertiarySystemFill, UIColor.systemGreen]
 
     let titles: [Types] = Types.allCases
     
@@ -42,12 +40,11 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureViewController()
         configureTypeLabel()
         configureCollectionTypeBlock()
         configureSettingsBlock()
-        configureDiscardButton()
-        configureDoneButton()
         
         applySnapshot()
         
@@ -73,12 +70,25 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     //MARK: - Configure User Interface
     
     func configureViewController() {
-        view.backgroundColor = UIColor.systemBackground
+        view.backgroundColor = UIColor(named: "SmoothGreen_2")
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = UIColor.label
         
         title = "Settings"
         
-        let closeButton = UIBarButtonItem(systemItem: .close)
-        navigationItem.rightBarButtonItem = closeButton
+        let doneButton = UIBarButtonItem(title: "Done",
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(dismissController))
+        let resetButton = UIBarButtonItem(title: "Reset",
+                                          style: .done,
+                                          target: self,
+                                          action: #selector(discardFilter))
+        
+        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.leftBarButtonItem = resetButton
     }
     
     private func configureTypeLabel() {
@@ -189,15 +199,22 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
         tempParticipants = nil
         tempPrice = nil
         
-        dismissController()
-    }
-    
-    @objc func dismissController() {
         let model = HalfBoredActivity(type: self.tempTypes,
                                       participants: self.tempParticipants,
                                       price: self.tempPrice)
         delegate?.set(model: model)
         
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismissController() {
+        
+        if (self.tempTypes != [] || self.tempParticipants != nil || self.tempPrice != nil) {
+            let model = HalfBoredActivity(type: self.tempTypes,
+                                          participants: self.tempParticipants,
+                                          price: self.tempPrice)
+            delegate?.set(model: model)
+        }
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -209,7 +226,7 @@ extension SettingsViewController {
     func setUpConstraints() {
         
         NSLayoutConstraint.activate([
-            typeLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
+            typeLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 70),
             typeLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             typeLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.95),
             typeLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.03)
@@ -227,20 +244,6 @@ extension SettingsViewController {
             settingsBlock.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             settingsBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             settingsBlock.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95)
-        ])
-        
-        NSLayoutConstraint.activate([
-            discardButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07),
-            discardButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
-            discardButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110),
-            discardButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            doneButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07),
-            doneButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
-            doneButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
-            doneButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
