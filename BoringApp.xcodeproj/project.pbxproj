@@ -8,9 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		1C4EB4E7DEE0652896A1AA86 /* Pods_BoringApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D99AEBAC04D31549A040E5 /* Pods_BoringApp.framework */; };
+		3B0022B627172EAF0057A737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B0022B527172EAF0057A737 /* Assets.xcassets */; };
+		3B0022BD27172EAF0057A737 /* BoringAppWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3B0022BC27172EAF0057A737 /* BoringAppWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3B0022C427172EAF0057A737 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0022C327172EAF0057A737 /* ContentView.swift */; };
+		3B0022C627172EAF0057A737 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0022C527172EAF0057A737 /* NotificationController.swift */; };
+		3B0022C827172EAF0057A737 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0022C727172EAF0057A737 /* NotificationView.swift */; };
+		3B0022CA27172EAF0057A737 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0022C927172EAF0057A737 /* ComplicationController.swift */; };
+		3B0022CC27172EB80057A737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B0022CB27172EB80057A737 /* Assets.xcassets */; };
+		3B0022CF27172EB80057A737 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B0022CE27172EB80057A737 /* Preview Assets.xcassets */; };
+		3B0022D427172EB80057A737 /* BoringAppWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3B0022B327172EA30057A737 /* BoringAppWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3B0022E72717382A0057A737 /* WatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0022E62717382A0057A737 /* WatchCardView.swift */; };
 		3B3B8FEC2712F50800976E15 /* BoringCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3B8FEB2712F50800976E15 /* BoringCollectionViewCell.swift */; };
 		3B3B8FF3271304CD00976E15 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3B8FF2271304CD00976E15 /* UIHelper.swift */; };
 		3B455DC62713821B00D7FEE7 /* CollectionTypeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B455DC52713821B00D7FEE7 /* CollectionTypeBlock.swift */; };
+		3B50845B27173FF600C706A5 /* BoringAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50845A27173FF600C706A5 /* BoringAppApp.swift */; };
+		3B5084602717413C00C706A5 /* BoringStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50845F2717413C00C706A5 /* BoringStackView.swift */; };
+		3B50846B2717464F00C706A5 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50846A2717464F00C706A5 /* TypeView.swift */; };
 		3B5CA0BA27024C2100124469 /* BoringApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B5CA0B827024C2100124469 /* BoringApp.xcdatamodeld */; };
 		3B67845726FFB330000919AB /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67845626FFB330000919AB /* UIColor+ext.swift */; };
 		3B7AD2882702601200A8733F /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7AD2872702601200A8733F /* DataBaseManager.swift */; };
@@ -24,11 +37,19 @@
 		3BD16F0F27008D45001586BF /* UIViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F0E27008D45001586BF /* UIViewController+ext.swift */; };
 		3BD16F1C2700D89C001586BF /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F1B2700D89C001586BF /* NotificationCenter.swift */; };
 		3BD16F1F2700E2CF001586BF /* HalfBoredActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F1E2700E2CF001586BF /* HalfBoredActivity.swift */; };
+		3BE8DCFA271854010055EE8C /* WatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE8DCF9271854010055EE8C /* WatchModel.swift */; };
+		3BE8DCFE2718554B0055EE8C /* BoredActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFACE0F26FA54570021FBC3 /* BoredActivity.swift */; };
+		3BE8DD02271856420055EE8C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B82626FBC2A9006340DD /* Protocols.swift */; };
+		3BE8DD06271856580055EE8C /* HalfBoredActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD16F1E2700E2CF001586BF /* HalfBoredActivity.swift */; };
+		3BE8DD0A271856730055EE8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B80E26FB7EB3006340DD /* Constants.swift */; };
+		3BE8DD1727186D580055EE8C /* BoredManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFACE1326FA54F00021FBC3 /* BoredManager.swift */; };
+		3BE8DD1B27186D6D0055EE8C /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFACE1726FA5D440021FBC3 /* ErrorMessages.swift */; };
 		3BF3B80626FB40F2006340DD /* ActivityLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B80526FB40F2006340DD /* ActivityLabel.swift */; };
 		3BF3B80F26FB7EB3006340DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B80E26FB7EB3006340DD /* Constants.swift */; };
 		3BF3B82026FBBE77006340DD /* BoringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B81F26FBBE77006340DD /* BoringButton.swift */; };
 		3BF3B82726FBC2A9006340DD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B82626FBC2A9006340DD /* Protocols.swift */; };
 		3BF3B82D26FBC45B006340DD /* MyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3B82C26FBC45B006340DD /* MyImageView.swift */; };
+		3BF9772527174741000994B4 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF9772427174741000994B4 /* ActivityView.swift */; };
 		3BFACDF226FA54030021FBC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFACDF126FA54030021FBC3 /* AppDelegate.swift */; };
 		3BFACDF426FA54030021FBC3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFACDF326FA54030021FBC3 /* SceneDelegate.swift */; };
 		3BFACDF626FA54030021FBC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFACDF526FA54030021FBC3 /* ViewController.swift */; };
@@ -44,11 +65,69 @@
 		3BFD242B2712DEE0003EC134 /* SavedBoredActivity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD24292712DEE0003EC134 /* SavedBoredActivity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3B0022BE27172EAF0057A737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BFACDE626FA54030021FBC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B0022BB27172EAF0057A737;
+			remoteInfo = "BoringAppWatch Extension";
+		};
+		3B0022D227172EB80057A737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BFACDE626FA54030021FBC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B0022B227172EA30057A737;
+			remoteInfo = BoringAppWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3B0022D527172EB80057A737 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3B0022D427172EB80057A737 /* BoringAppWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B0022D827172EB80057A737 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3B0022BD27172EAF0057A737 /* BoringAppWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1CDDAD67F929C96A1A2D9DD3 /* Pods-BoringApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoringApp.debug.xcconfig"; path = "Target Support Files/Pods-BoringApp/Pods-BoringApp.debug.xcconfig"; sourceTree = "<group>"; };
+		3B0022B327172EA30057A737 /* BoringAppWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoringAppWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B0022B527172EAF0057A737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B0022B727172EAF0057A737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0022BC27172EAF0057A737 /* BoringAppWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BoringAppWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B0022C327172EAF0057A737 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3B0022C527172EAF0057A737 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		3B0022C727172EAF0057A737 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		3B0022C927172EAF0057A737 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		3B0022CB27172EB80057A737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B0022CE27172EB80057A737 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3B0022D027172EB80057A737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0022D127172EB80057A737 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		3B0022E62717382A0057A737 /* WatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCardView.swift; sourceTree = "<group>"; };
 		3B3B8FEB2712F50800976E15 /* BoringCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B3B8FF2271304CD00976E15 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		3B455DC52713821B00D7FEE7 /* CollectionTypeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTypeBlock.swift; sourceTree = "<group>"; };
+		3B50845A27173FF600C706A5 /* BoringAppApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoringAppApp.swift; sourceTree = "<group>"; };
+		3B50845F2717413C00C706A5 /* BoringStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringStackView.swift; sourceTree = "<group>"; };
+		3B50846A2717464F00C706A5 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
 		3B5CA0B927024C2100124469 /* BoredActivityStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoredActivityStorage.xcdatamodel; sourceTree = "<group>"; };
 		3B67845626FFB330000919AB /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
 		3B7AD2872702601200A8733F /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
@@ -62,11 +141,13 @@
 		3BD16F0E27008D45001586BF /* UIViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ext.swift"; sourceTree = "<group>"; };
 		3BD16F1B2700D89C001586BF /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		3BD16F1E2700E2CF001586BF /* HalfBoredActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfBoredActivity.swift; sourceTree = "<group>"; };
+		3BE8DCF9271854010055EE8C /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
 		3BF3B80526FB40F2006340DD /* ActivityLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLabel.swift; sourceTree = "<group>"; };
 		3BF3B80E26FB7EB3006340DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3BF3B81F26FBBE77006340DD /* BoringButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoringButton.swift; sourceTree = "<group>"; };
 		3BF3B82626FBC2A9006340DD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		3BF3B82C26FBC45B006340DD /* MyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageView.swift; sourceTree = "<group>"; };
+		3BF9772427174741000994B4 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		3BFACDEE26FA54030021FBC3 /* BoringApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoringApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BFACDF126FA54030021FBC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BFACDF326FA54030021FBC3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +168,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3B0022B927172EAF0057A737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BFACDEB26FA54030021FBC3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,6 +192,41 @@
 				66D99AEBAC04D31549A040E5 /* Pods_BoringApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B0022B427172EA30057A737 /* BoringAppWatch */ = {
+			isa = PBXGroup;
+			children = (
+				3B0022B527172EAF0057A737 /* Assets.xcassets */,
+				3B0022B727172EAF0057A737 /* Info.plist */,
+			);
+			path = BoringAppWatch;
+			sourceTree = "<group>";
+		};
+		3B0022C027172EAF0057A737 /* BoringAppWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3BE8DD4C2718FDBC0055EE8C /* Support */,
+				3BE8DD4D2718FDC60055EE8C /* Main Views */,
+				3BE8DCF8271853ED0055EE8C /* Model */,
+				3BF97732271793E3000994B4 /* Custom Views */,
+				3B0022C527172EAF0057A737 /* NotificationController.swift */,
+				3B0022C727172EAF0057A737 /* NotificationView.swift */,
+				3B0022C927172EAF0057A737 /* ComplicationController.swift */,
+				3B0022CB27172EB80057A737 /* Assets.xcassets */,
+				3B0022D027172EB80057A737 /* Info.plist */,
+				3B0022D127172EB80057A737 /* PushNotificationPayload.apns */,
+				3B0022CD27172EB80057A737 /* Preview Content */,
+			);
+			path = "BoringAppWatch Extension";
+			sourceTree = "<group>";
+		};
+		3B0022CD27172EB80057A737 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3B0022CE27172EB80057A737 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		3B5CA0B727024BF600124469 /* DataBase */ = {
@@ -151,6 +274,30 @@
 			path = ImageViews;
 			sourceTree = "<group>";
 		};
+		3BE8DCF8271853ED0055EE8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3BE8DCF9271854010055EE8C /* WatchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3BE8DD4C2718FDBC0055EE8C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3B50845A27173FF600C706A5 /* BoringAppApp.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		3BE8DD4D2718FDC60055EE8C /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B0022C327172EAF0057A737 /* ContentView.swift */,
+			);
+			path = "Main Views";
+			sourceTree = "<group>";
+		};
 		3BF3B82526FBC29E006340DD /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,10 +306,23 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		3BF97732271793E3000994B4 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B0022E62717382A0057A737 /* WatchCardView.swift */,
+				3B50846A2717464F00C706A5 /* TypeView.swift */,
+				3BF9772427174741000994B4 /* ActivityView.swift */,
+				3B50845F2717413C00C706A5 /* BoringStackView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		3BFACDE526FA54030021FBC3 = {
 			isa = PBXGroup;
 			children = (
 				3BFACDF026FA54030021FBC3 /* BoringApp */,
+				3B0022B427172EA30057A737 /* BoringAppWatch */,
+				3B0022C027172EAF0057A737 /* BoringAppWatch Extension */,
 				3BFACDEF26FA54030021FBC3 /* Products */,
 				6F437323C32F6AAC0E3E31C5 /* Pods */,
 				0CEE399316F27683C38F1248 /* Frameworks */,
@@ -173,6 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				3BFACDEE26FA54030021FBC3 /* BoringApp.app */,
+				3B0022B327172EA30057A737 /* BoringAppWatch.app */,
+				3B0022BC27172EAF0057A737 /* BoringAppWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,6 +460,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3B0022B227172EA30057A737 /* BoringAppWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B0022DC27172EB80057A737 /* Build configuration list for PBXNativeTarget "BoringAppWatch" */;
+			buildPhases = (
+				3B0022B127172EA30057A737 /* Resources */,
+				3B0022D827172EB80057A737 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B0022BF27172EAF0057A737 /* PBXTargetDependency */,
+			);
+			name = BoringAppWatch;
+			productName = BoringAppWatch;
+			productReference = 3B0022B327172EA30057A737 /* BoringAppWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		3B0022BB27172EAF0057A737 /* BoringAppWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B0022DB27172EB80057A737 /* Build configuration list for PBXNativeTarget "BoringAppWatch Extension" */;
+			buildPhases = (
+				3B0022B827172EAF0057A737 /* Sources */,
+				3B0022B927172EAF0057A737 /* Frameworks */,
+				3B0022BA27172EAF0057A737 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BoringAppWatch Extension";
+			productName = "BoringAppWatch Extension";
+			productReference = 3B0022BC27172EAF0057A737 /* BoringAppWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		3BFACDED26FA54030021FBC3 /* BoringApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BFACE0226FA54060021FBC3 /* Build configuration list for PBXNativeTarget "BoringApp" */;
@@ -307,10 +503,12 @@
 				3BFACDEB26FA54030021FBC3 /* Frameworks */,
 				3BFACDEC26FA54030021FBC3 /* Resources */,
 				3DA1855C6E8D39B2550F3239 /* [CP] Embed Pods Frameworks */,
+				3B0022D527172EB80057A737 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3B0022D327172EB80057A737 /* PBXTargetDependency */,
 			);
 			name = BoringApp;
 			productName = BoringApp;
@@ -323,9 +521,15 @@
 		3BFACDE626FA54030021FBC3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					3B0022B227172EA30057A737 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					3B0022BB27172EAF0057A737 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					3BFACDED26FA54030021FBC3 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -345,11 +549,30 @@
 			projectRoot = "";
 			targets = (
 				3BFACDED26FA54030021FBC3 /* BoringApp */,
+				3B0022B227172EA30057A737 /* BoringAppWatch */,
+				3B0022BB27172EAF0057A737 /* BoringAppWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3B0022B127172EA30057A737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B0022B627172EAF0057A737 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B0022BA27172EAF0057A737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B0022CF27172EB80057A737 /* Preview Assets.xcassets in Resources */,
+				3B0022CC27172EB80057A737 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BFACDEC26FA54030021FBC3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,6 +627,29 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3B0022B827172EAF0057A737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BE8DD1B27186D6D0055EE8C /* ErrorMessages.swift in Sources */,
+				3B0022C627172EAF0057A737 /* NotificationController.swift in Sources */,
+				3B0022E72717382A0057A737 /* WatchCardView.swift in Sources */,
+				3BE8DCFE2718554B0055EE8C /* BoredActivity.swift in Sources */,
+				3BE8DD06271856580055EE8C /* HalfBoredActivity.swift in Sources */,
+				3BE8DD02271856420055EE8C /* Protocols.swift in Sources */,
+				3B0022C427172EAF0057A737 /* ContentView.swift in Sources */,
+				3B5084602717413C00C706A5 /* BoringStackView.swift in Sources */,
+				3B0022CA27172EAF0057A737 /* ComplicationController.swift in Sources */,
+				3BF9772527174741000994B4 /* ActivityView.swift in Sources */,
+				3BE8DD1727186D580055EE8C /* BoredManager.swift in Sources */,
+				3B50845B27173FF600C706A5 /* BoringAppApp.swift in Sources */,
+				3BE8DCFA271854010055EE8C /* WatchModel.swift in Sources */,
+				3BE8DD0A271856730055EE8C /* Constants.swift in Sources */,
+				3B50846B2717464F00C706A5 /* TypeView.swift in Sources */,
+				3B0022C827172EAF0057A737 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BFACDEA26FA54030021FBC3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -445,6 +691,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3B0022BF27172EAF0057A737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B0022BB27172EAF0057A737 /* BoringAppWatch Extension */;
+			targetProxy = 3B0022BE27172EAF0057A737 /* PBXContainerItemProxy */;
+		};
+		3B0022D327172EB80057A737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B0022B227172EA30057A737 /* BoringAppWatch */;
+			targetProxy = 3B0022D227172EB80057A737 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		3BFACDFC26FA54060021FBC3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -457,6 +716,94 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3B0022D627172EB80057A737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8UD456XZTK;
+				IBSC_MODULE = BoringAppWatch_Extension;
+				INFOPLIST_FILE = BoringAppWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanovua.BoringApp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		3B0022D727172EB80057A737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8UD456XZTK;
+				IBSC_MODULE = BoringAppWatch_Extension;
+				INFOPLIST_FILE = BoringAppWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanovua.BoringApp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		3B0022D927172EB80057A737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"BoringAppWatch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 8UD456XZTK;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "BoringAppWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanovua.BoringApp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		3B0022DA27172EB80057A737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"BoringAppWatch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 8UD456XZTK;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "BoringAppWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanovua.BoringApp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
 		3BFACE0026FA54060021FBC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -616,6 +963,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3B0022DB27172EB80057A737 /* Build configuration list for PBXNativeTarget "BoringAppWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B0022D927172EB80057A737 /* Debug */,
+				3B0022DA27172EB80057A737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B0022DC27172EB80057A737 /* Build configuration list for PBXNativeTarget "BoringAppWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B0022D627172EB80057A737 /* Debug */,
+				3B0022D727172EB80057A737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3BFACDE926FA54030021FBC3 /* Build configuration list for PBXProject "BoringApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

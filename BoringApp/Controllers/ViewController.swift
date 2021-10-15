@@ -8,10 +8,11 @@
 import UIKit
 import CoreData
 import SafariServices
+import WatchConnectivity
 
 class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewControllerDelegate {
 
-    //MARK: - Properties
+    // MARK: - Properties
     
     var card: CardView = CardView()
     let refreshImageView: MyImageView = MyImageView(image: SFSymbols.arrowClockwiseCircle!)
@@ -26,13 +27,14 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     var tempFilter: HalfBoredActivity? = nil
     
-    //MARK: - Lifecycle
+    var session: WCSession?
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViewController()
-//        configureGradient()
         configureCardView()
         configureRefreshImageView()
         configureGestureRecognizer()
@@ -40,6 +42,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         make(.invisible, a: self.card)
         
         fetchData(with: self.tempFilter)
+        
+        configureWatchConnectivity()
     }
     
     override func viewWillLayoutSubviews() {
@@ -47,7 +51,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         setUpConstraints()
     }
     
-    //MARK: - Configure User Interface
+    // MARK: - Configure User Interface
     
     func configureViewController() {
         view.backgroundColor = UIColor(named: "SmoothGreen_2")
@@ -127,6 +131,27 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         return stackViewItem
     }
     
+    // MARK: - Watch connectivity
+    
+    private func configureWatchConnectivity() {
+        if (WCSession.isSupported()) {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
+        }
+    }
+    
+    private func sendToWatch(model: BoredActivity) {
+        guard let validSession = self.session, validSession.isReachable else {
+            return
+        }
+        
+        let passArray: [String] = [model.type ?? "jopa", model.activity ?? "jopajopa", "\(model.participants)", "\(model.price)"]
+        
+        let data: [String: Any] = ["iPhone" : passArray as Any]
+        validSession.sendMessage(data, replyHandler: nil, errorHandler: nil)
+    }
+    
     // MARK: - Fetch Data API
     
     private func fetchData(with filter: HalfBoredActivity?) {
@@ -142,6 +167,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                     DispatchQueue.main.async {
                         self.boredModel = activity
                         self.card.set(with: activity)
+                        
+                        self.sendToWatch(model: activity)
 
                         self.make(.visible, a: self.card)
                         self.make(.invisible, a: self.stackViewItem)
@@ -160,7 +187,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         }
     }
     
-    //MARK: - Support functions
+    // MARK: - Support functions
     
     private func make(_ state: ViewState, a view: UIView) {
         switch state {
@@ -196,7 +223,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         DataBaseManager.shared.saveActivity(with: newModel)
     }
     
-    //MARK: - Objective-C support functions
+    // MARK: - Objective-C support functions
     
     @objc private func moveCard(recognizer: UIPanGestureRecognizer) {
         
@@ -243,7 +270,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         }
     }
     
-    //MARK: - Present controllers
+    // MARK: - Present controllers
     
     private func openSafariWithLink(with link: String) {
         if let url = URL(string: link) {
@@ -269,7 +296,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     }
 }
 
-//MARK: - Constraints
+// MARK: - Constraints
 
 extension ViewController {
     func setUpConstraints() {
@@ -292,7 +319,7 @@ extension ViewController {
     }
 }
 
-//MARK: - Open Safari
+// MARK: - Open Safari
 
 extension ViewController: BoringButtonDelegate {
     func set(link: String) {
@@ -300,11 +327,25 @@ extension ViewController: BoringButtonDelegate {
     }
 }
 
-//MARK: - Update Data with filter
+// MARK: - Update Data with filter
 
 extension ViewController: SettingsDelegate {
     func set(model: HalfBoredActivity) {
         self.tempFilter = model
         self.fetchData(with: self.tempFilter)
+    }
+}
+
+extension ViewController: WCSessionDelegate {
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        //
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        //
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        //
     }
 }

@@ -17,7 +17,11 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     let discardButton: UIButton = UIButton()
     let doneButton: UIButton = UIButton()
     
-    let color = [UIColor.yellow, UIColor.orange, UIColor.systemTeal, UIColor.systemBlue, UIColor.systemPink, UIColor.systemGray2, UIColor.systemGray, UIColor.tertiarySystemFill, UIColor.systemGreen]
+    let color = [
+        UIColor.yellow, UIColor.orange, UIColor.systemTeal, UIColor.systemBlue,
+        UIColor.systemPink, UIColor.systemGray2, UIColor.systemGray,
+        UIColor.tertiarySystemFill, UIColor.systemGreen
+    ]
 
     let titles: [Types] = Types.allCases
     
@@ -72,7 +76,6 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     func configureViewController() {
         view.backgroundColor = UIColor(named: "SmoothGreen_2")
         
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = UIColor.label
         
@@ -113,7 +116,8 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
         
         collectionView.delegate = self
         
-        collectionView.register(BoringCollectionViewCell.self, forCellWithReuseIdentifier: BoringCollectionViewCell.reuseID)
+        collectionView.register(BoringCollectionViewCell.self,
+                                forCellWithReuseIdentifier: BoringCollectionViewCell.reuseID)
         
         view.addSubview(collectionView)
     }
@@ -172,14 +176,12 @@ class SettingsViewController: UIViewController, UIViewControllerProtocol {
     //MARK: - Objective-C functions
     
     @objc private func getPrice(notification: Notification) {
-        let type = notification.object as? Price
+        let type = notification.object as! Price
         switch type {
         case .cheap(let min, let max):
             self.tempPrice = (min, max)
         case .average(let min, let max):
             self.tempPrice = (min, max)
-        case .none:
-            break
         }
     }
     
@@ -242,7 +244,7 @@ extension SettingsViewController {
         NSLayoutConstraint.activate([
             settingsBlock.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0),
             settingsBlock.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            settingsBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+            settingsBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.65),
             settingsBlock.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95)
         ])
     }
