@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var offset: CGSize = CGSize.zero
+    private var model: WatchModel = WatchModel()
     
     var body: some View {
         VStack {
@@ -34,10 +35,8 @@ struct ContentView: View {
                                     self.offset = gesture.translation
                                 })
                                 .onEnded({ (gesture) in
-                                    if (abs(self.offset.width) < 25) {
-                                        //
-                                    } else {
-                                        //
+                                    if (abs(self.offset.width) >= 25) {
+                                        self.model.sendToiPhone()
                                     }
                                     self.offset = .zero
                                 })

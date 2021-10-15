@@ -39,7 +39,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         configureRefreshImageView()
         configureGestureRecognizer()
         
-        make(.invisible, a: self.card)
+        make(the: self.card, .invisible)
         
         fetchData(with: self.tempFilter)
         
@@ -131,7 +131,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
         return stackViewItem
     }
     
-    // MARK: - Watch connectivity
+    // MARK: - Connection iOS & WatchOS apps
     
     private func configureWatchConnectivity() {
         if (WCSession.isSupported()) {
@@ -156,7 +156,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     private func fetchData(with filter: HalfBoredActivity?) {
         
-        self.make(.visible, a: self.stackViewItem)
+        self.make(the: self.stackViewItem, .visible)
         
         DispatchQueue.global(qos: .background).async {
             self.boredManager.fetchData(with: filter) { [weak self] (result) in
@@ -170,8 +170,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                         
                         self.sendToWatch(model: activity)
 
-                        self.make(.visible, a: self.card)
-                        self.make(.invisible, a: self.stackViewItem)
+                        self.make(the: self.card, .visible)
+                        self.make(the: self.stackViewItem, .invisible)
                     }
                 case .failure(let error):
                     DispatchQueue.main.async {
@@ -179,8 +179,8 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                         
                         self.tempFilter = nil
                         
-                        self.make(.visible, a: self.card)
-                        self.make(.invisible, a: self.stackViewItem)
+                        self.make(the: self.card, .visible)
+                        self.make(the: self.stackViewItem, .invisible)
                     }
                 }
             }
@@ -189,7 +189,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
     
     // MARK: - Support functions
     
-    private func make(_ state: ViewState, a view: UIView) {
+    private func make(the view: UIView, _ state: ViewState) { // , a view: UIView
         switch state {
         case .visible:
             UIView.animate(withDuration: 1.0) {
@@ -248,7 +248,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x += self.view.frame.width
                 } completion: { _ in
-                    self.make(.invisible, a: self.card)
+                    self.make(the: self.card, .invisible)
                 }
             } else if (self.card.center.x < 20) {
                 self.saveToDB(with: self.boredModel)
@@ -256,7 +256,7 @@ class ViewController: UIViewController, UIViewControllerProtocol, SFSafariViewCo
                 UIView.animate(withDuration: 0.2) {
                     self.card.center.x -= self.view.frame.width
                 } completion: { _ in
-                    self.make(.invisible, a: self.card)
+                    self.make(the: self.card, .invisible)
                 }
             }
             
@@ -347,5 +347,9 @@ extension ViewController: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         //
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        self.fetchData(with: self.tempFilter)
     }
 }

@@ -21,6 +21,12 @@ class WatchModel: NSObject, ObservableObject, WCSessionDelegate {
         self.session.activate()
     }
     
+    func sendToiPhone() {
+        self.session.sendMessage(["Watch" : "text" as Any], replyHandler: nil) { (error) in
+            print("Oops, I've got an error: \(error)")
+        }
+    }
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         //
     }
