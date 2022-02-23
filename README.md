@@ -6,7 +6,7 @@
 ### Basic Functionality
 - random activity generation
 - generation of specific activity
-- fisplaying an error
+- displaying an error
 - swipe animations
 - network API requests using [URLSession](https://developer.apple.com/documentation/foundation/urlsession)
 
